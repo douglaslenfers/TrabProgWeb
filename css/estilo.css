@@ -1,0 +1,22 @@
+/* #0ECCCC e #377474 */
+button {
+    background-color: #377474;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.container {
+    padding: 15px;
+}
+
+span.password_lost {
+    float: right;
+}
