@@ -154,12 +154,16 @@ footer{
 
 /*teste*/
 #myInput {
-    font-size: 16px; /* Increase font-size */
-    padding: 12px 20px 12px 5px; /* Add some padding */
-    border: 1px solid #ddd; /* Add a grey border */
-    margin-bottom: 12px; /* Add some space below the input */
+  background-image: url('searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
     color: black;
-    width: 130px;
+    width: 150px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
     margin-left: 0;
@@ -192,3 +196,4 @@ footer{
 #myInput:focus {
     width: 100%;
 }
+

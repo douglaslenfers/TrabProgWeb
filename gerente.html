@@ -78,17 +78,29 @@ function myFunction() {
         </div>
 
 
-             <section id="servicos">
+    <section id="servicos">
 
 
 
 
 
-<div class="container"> 
+<div class="container" style="padding-top: 30px"> 
     
-    <div class="page-header">
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procure por..">
-    <div class="col-md-12  texto-capa">
+    <div class="col-md-8" >
+        <input  type="text" id="myInput" onkeyup="myFunction()" placeholder="Pesquisar...">
+    </div>
+
+    <div class="col-md-4" align="right">
+        <button class="btn btn-success" data-toggle="modal" data-target="#cadastro">Cadastrar produto</button>
+    </div>
+
+    
+
+
+
+</div>
+<div class="container"> 
+    <div class="col-md-12">
         
         <table id="myTable" class="tabletable-striped table-bordered table-hover table-condensed tabela">
           <thead>
@@ -117,7 +129,7 @@ function myFunction() {
               <td>-</td>
               <td>-</td>
             </tr>
-                        <tr>
+            <tr>
               <td><img src="imagens/maca.png" class="img-responsive food1" ></td>
               <td>teste</td>
               <td>R$ 3,00</td>
@@ -133,7 +145,7 @@ function myFunction() {
           </tbody>
         </table>
 
-</div>
+
       </div>
 
 
