@@ -1,15 +1,15 @@
 <html>
-    <header>
-        <meta charset="UTF-8" />
-        <title>Admin</title>
-        <link rel="stylesheet" href="css/reset.css" type="text/css">
-        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="css/estilo.css" type="text/css">
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+<header>
+    <meta charset="UTF-8" />
+    <title>Caixa</title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/estilo.css" type="text/css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
-        <script>
-            function myFunction() {
+    <script>
+        function myFunction() {
                 // Declare variables 
                 var input, filter, table, tr, td, i;
                 input = document.getElementById("myInput");
@@ -64,43 +64,65 @@
             </div> <!-- /container -->
         </nav> <!-- /nav -->
         <div class="container ">
-                
+
             <div class="row" style="padding-top:80px;"> <!-- Conteudo -->
                 <div class="col-md-8 col-md-offset-2 col-lg-12 col-lg-offset-0">
                     <div role="tabpanel">
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="produtos">
-                                <div class="container" style="padding-top: 30px"> 
-                                    <div class="col-md-8" >
-                                        <input  type="text" id="myInput" onkeyup="myFunction()" placeholder="Pesquisar...">
+                                <div class="container " style="padding-top: 30px"> 
+                                    <div class="col-md-8 form-inline" >
+                                        <div class="form-group">
+                                            <label for="produto">Produto:</label>
+                                            <select class="form-control " id="produto">
+                                                <option>Selecione o Produto</option>
+                                                <option>Maçã</option>
+                                                <option>Uva</option>
+                                            </select>    
+                                        </div>
+                                        <label for="example-number-input" class="col-2 col-form-label">Quantidade</label>
+                                        <input class="form-control" type="number" value="1" id="example-number-input" style="width: 70px">
                                     </div>
                                     <div class="col-md-4" align="right">
-                                        <button class="btn btn-success" data-toggle="modal" data-target="#cadastrousuario">Cadastrar Usuário</button>
+                                        <div class="form-group">
+                                            <button class="btn btn-info" data-toggle="modal" data-target="#cadastrousuario">Confirmar</button>
+                                        </div>
                                     </div>
+
+
                                 </div>
                                 <div class="container"> 
                                     <div class="col-md-12">
                                         <table id="myTable" class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Usuário</th>
-                                                    <th>Email</th>
-                                                    <th>Perfil</th>
-                                                    <th>Senha</th>
+                                                    <th>Imagem</th>
+                                                    <th>Produto</th>
+                                                    <th>Quantidade</th>
+                                                    <th>Valor por Unidade</th>
+                                                    <th>Valor</th>
+                                                    <th>Desconto</th>
+                                                    <th>Valor total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Pizani</td>
-                                                    <td>pizani@squad.com.br</td>
-                                                    <td>Admin</td>
-                                                    <td>*********</td>
+                                                    <td><img src="imagens/maca.png" class="img-responsive food1" ></td>
+                                                    <td>Maçã</td>
+                                                    <td>5</td>
+                                                    <td>R$ 3,00</td>
+                                                    <td>R$ 15,00</td>
+                                                    <th>-</th>
+                                                    <th>R$ 15,00</th>
                                                 </tr>
                                                 <tr>
-                                                    <td>Lenfers</td>
-                                                    <td>lenfers@squad.com.br</td>
-                                                    <td>Admin</td>
-                                                    <td>*********</td>
+                                                    <td><img src="imagens/uva.png" class="img-responsive food1" ></td>
+                                                    <td>Uva</td>
+                                                    <td>10</td>
+                                                    <td>R$ 2,00</td>
+                                                    <td>R$ 20,00</td>
+                                                    <th>50%</th>
+                                                    <th>R$ 10,00</th>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -118,7 +140,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="container"> 
+                        <div class="col-md-6" >
+                            
+                        </div>
+                        <div class="col-md-6" align="right">
+                            <div class="form-group">
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#cadastrousuario">Limpar</button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#cadastrousuario">Finalizar Compra</button>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
+
+
             </div><!-- Fim conteudo -->
 
 
@@ -135,4 +172,4 @@
             </div>
         </footer>
     </body>
-</html>
+    </html>
