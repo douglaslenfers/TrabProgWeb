@@ -110,3 +110,7 @@ nav.navbar-transparente{
 #myInput:focus {
     width: 100%;
 }
+
+.produtoquantidade{
+    width: 20px;
+}
