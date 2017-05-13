@@ -51,13 +51,6 @@ nav.navbar-transparente{
     padding: 5px 15px;
 }
 
-.divisor{
-    width: 1px;
-    height: 16px;
-    background: white;
-    margin: 16px 10px;
-}
-
 .navbar-inverse .navbar-nav>li>a{
     color: white;
 }
@@ -70,7 +63,7 @@ nav.navbar-transparente{
 .telaLogin{
     display: table;
     width: 100%;
-    margin-top: 200px
+    margin-top: 120px;
 }
 
 .texto-capa{
@@ -81,7 +74,7 @@ nav.navbar-transparente{
     padding-top: 100px;
 }
 
-.food1 {
+.miniatureImage {
     width:70px;
     height: 70px;
 }
@@ -93,60 +86,27 @@ nav.navbar-transparente{
     font-size: 14px;
 }
 
-
-/* botoes*/
-.botaologin{
-    background-color: red;
-    color: white;
+.conteudo {
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
-.item-redesocial{
-    float: right;
-}
-
-
-/*teste*/
 #myInput {
-  background-image: url('searchicon.png');
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
+    background-image: url('../imagens/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 12px;
+    padding: 10px 15px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
     color: black;
-    width: 150px;
+    width: 200px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
     margin-left: 0;
 }
 
-#myTable {
-    border-collapse: collapse; /* Collapse borders */
-    width: 100%; /* Full-width */
-    border: 1px solid #ddd; /* Add a grey border */
-    font-size: 18px; /* Increase font-size */
-}
-
-#myTable th, #myTable td {
-    text-align: left; /* Left-align text */
-    padding: 12px; /* Add padding */
-}
-
-#myTable tr {
-    /* Add a bottom border to all table rows */
-    border-bottom: 1px solid #ddd; 
-}
-
-#myTable tr.header, #myTable tr:hover {
-    /* Add a grey background color to the table header and on hover */
-    background-color: #f1f1f1;
-}
-
-
-/* When the input field gets focus, change its width to 100% */
 #myInput:focus {
     width: 100%;
 }
-

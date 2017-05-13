@@ -1,16 +1,18 @@
 <html>
     <header>
         <meta charset="UTF-8" />
-        <title>Gerente</title>
+        <title>Bem vindo ao Squad - Gerente</title>
         <link rel="stylesheet" href="css/reset.css" type="text/css">
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/estilo.css" type="text/css">
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <style type="text/css">
             ${demo.css}
         </style>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/data.js"></script>
+        <script src="https://code.highcharts.com/modules/drilldown.js"></script>
         <script>
             function myFunction() {
                 // Declare variables 
@@ -35,28 +37,17 @@
         </script>
     </header>
     <body>
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/data.js"></script>
-        <script src="https://code.highcharts.com/modules/drilldown.js"></script>
-        <!-- SUPERIOR BAR -->
         <nav class="navbar navbar-fixed-top navbar-inverse navbar-transparente">
             <div class="container">
-                <!-- header -->
                 <div class="navbar-header">
-                    <!-- button toggle -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barranavegacao">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                    <button type="button" class="navbar-toggle collapsed btn-lg" data-toggle="collapse" data-target="#barranavegacao">
+                        <span class="glyphicon glyphicon-th-list" style="color:#fff" aria-hidden="true"></span>
                     </button>
-
-                    <a href="login.html" class="navbar-brand">
-                        <img src="imagens/favicon.png" class="img-logo">
+                    <a href="gerente.html" class="navbar-brand">
+                        <img src="imagens/logo.png" class="img-logo">
                     </a>
-                </div> 
-                <!-- navbar -->
+                </div>
                 <div class="collapse navbar-collapse" id="barranavegacao">
-
                     <ul class="nav navbar-nav navbar-right">
                         <li role="presentation" class="active">
                             <a href="#produtos" aria-controls="controle-saldo" role="tab" data-toggle="tab">Produtos</a>
@@ -64,15 +55,14 @@
                         <li role="presentation">
                             <a href="#relatorio" aria-controls="demonstrativo-saldo" role="tab" data-toggle="tab">Relatório</a>
                         </li>
-                        <li class="divisor" role="separator">|</li>
-                        <li><a href="">Sair</a></li>
+                        <li><a href="index.html">Sair</a></li>
                     </ul>
-                    <!-- /navbar -->
                 </div>
-            </div> <!-- /container -->
-        </nav> <!-- /nav -->
-        <div class="row" style="padding-top:80px;">
-            <div class="col-md-8 col-md-offset-2 col-lg-12 col-lg-offset-0">
+            </div>
+        </nav>
+        <div class="container conteudo">
+            <div class="row">
+                <!-- Conteudo -->
                 <div role="tabpanel">
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="produtos">
@@ -82,65 +72,6 @@
                                 </div>
                                 <div class="col-md-4" align="right">
                                     <button class="btn btn-success" data-toggle="modal" data-target="#cadastromodal">Cadastrar produto</button>
-                                </div>
-                                <div id="cadastromodal" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Cadastrar Produto</h4>
-                                            </div>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label for="nome">Nome produto:</label>
-                                                    <input id="nome" value='' placeholder="ex: Maçã" type="text" class="form-control" />
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label for="nome">Quantidade por Unidade:</label>
-                                                    <input id="nome" value='' placeholder="ex: 2" type="text" class="form-control" />
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="nome">Unidade de medida:</label>
-                                                    <input id="nome" value='' placeholder="ex: Kg, unidade" type="text" class="form-control" />
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label for="nome">Valor:</label>
-                                                    <input id="nome" value='' placeholder="R$ 0.00" type="text" class="form-control" />
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="nome">Validade:</label>
-                                                    <input id="nome" value='' placeholder="ex: 25/03/2017" type="text" class="form-control" />
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label for="nome">Promoção:</label>
-                                                    <input id="nome" value='' placeholder="R$ 0.00" type="text" class="form-control" />
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="nome">% promoção:</label>
-                                                    <input id="nome" value='' placeholder="ex: 50%" type="text" class="form-control" />
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="nome">Qtd minima:</label>
-                                                    <input id="nome" value='' placeholder="ex: 2" type="text" class="form-control" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                            <button type="button" class="btn btn-success" data-dismiss="modal">Cadastrar</button>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="container"> 
@@ -162,7 +93,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><img src="imagens/maca.png" class="img-responsive food1" ></td>
+                                                <td><img src="imagens/maca.png" class="img-responsive miniatureImage" ></td>
                                                 <td>Maça</td>
                                                 <td>R$ 3,00</td>
                                                 <td>4</td>
@@ -173,7 +104,7 @@
                                                 <td>-</td>
                                             </tr>
                                             <tr>
-                                                <td><img src="imagens/maca.png" class="img-responsive food1" ></td>
+                                                <td><img src="imagens/maca.png" class="img-responsive miniatureImage" ></td>
                                                 <td>teste</td>
                                                 <td>R$ 3,00</td>
                                                 <td>4</td>
@@ -199,13 +130,14 @@
                         </div>
                     </div>
                 </div>
+                <!-- Fim conteudo -->
             </div>
         </div>
         <footer id="rodape">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6" style="margin-top: 25px; color: white;">
-                        <label>Squad Turtle</label>
+                        <label>Turtle Squad</label>
                     </div>
                 </div>
             </div>
