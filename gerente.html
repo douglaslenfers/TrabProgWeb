@@ -5,8 +5,11 @@
         <link rel="stylesheet" href="css/reset.css" type="text/css">
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/estilo.css" type="text/css">
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="css/select2.min.css" type="text/css">
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/select2.full.min.js"></script>
         <style type="text/css">
             ${demo.css}
         </style>
@@ -14,6 +17,11 @@
         <script src="https://code.highcharts.com/modules/data.js"></script>
         <script src="https://code.highcharts.com/modules/drilldown.js"></script>
         <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+                $(".select2").select2();
+            });
+
             function myFunction() {
                 // Declare variables 
                 var input, filter, table, tr, td, i;
@@ -33,6 +41,10 @@
                         }
                     } 
                 }
+            }
+
+            function showCadProduto() {
+                $('#cadProduto').modal('show');
             }
         </script>
     </header>
@@ -71,7 +83,7 @@
                                     <input  type="text" id="myInput" onkeyup="myFunction()" placeholder="Pesquisar...">
                                 </div>
                                 <div class="col-md-4" align="right">
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#cadastromodal">Cadastrar produto</button>
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#cadProduto">Cadastrar produto</button>
                                 </div>
                             </div>
                             <div class="container"> 
@@ -88,6 +100,7 @@
                                                 <th>Promoção</th>
                                                 <th>% Promoção</th>
                                                 <th>Qtd mínima para desconto</th>
+                                                <th></th>
 
                                             </tr>
                                         </thead>
@@ -102,6 +115,14 @@
                                                 <td>Não</td>
                                                 <td>-</td>
                                                 <td>-</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadProduto()">
+                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td><img src="imagens/maca.png" class="img-responsive miniatureImage" ></td>
@@ -113,6 +134,14 @@
                                                 <td>Não</td>
                                                 <td>-</td>
                                                 <td>-</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadProduto()">
+                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -493,5 +522,64 @@
                 }
             });
         </script>
+        <!-- Modal -->
+        <div class="modal fade" id="cadProduto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Cadastrar Produto</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="nome">Nome produto:</label>
+                                <input id="nome" value='' placeholder="ex: Maçã" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="nome">Quantidade por Unidade:</label>
+                                <input id="nome" value='' placeholder="ex: 2" type="text" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nome">Unidade de medida:</label>
+                                <input id="nome" value='' placeholder="ex: Kg, unidade" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="nome">Valor:</label>
+                                <input id="nome" value='' placeholder="R$ 0.00" type="text" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nome">Validade:</label>
+                                <input id="nome" value='' placeholder="ex: 25/03/2017" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="nome">Promoção:</label>
+                                <input id="nome" value='' placeholder="R$ 0.00" type="text" class="form-control" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="nome">% promoção:</label>
+                                <input id="nome" value='' placeholder="ex: 50%" type="text" class="form-control" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="nome">Qtd minima:</label>
+                                <input id="nome" value='' placeholder="ex: 2" type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Cadastrar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

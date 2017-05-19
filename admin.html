@@ -1,13 +1,24 @@
 <html>
     <header>
         <meta charset="UTF-8" />
-        <title>Admin</title>
+        <title>Bem vindo ao Squad - Admin</title>
         <link rel="stylesheet" href="css/reset.css" type="text/css">
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/estilo.css" type="text/css">
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="css/select2.min.css" type="text/css">
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/select2.full.min.js"></script>
         <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+                $(".select2").select2({
+                    placeholder: "Selecione um perfil",
+                    theme: "classic"
+                });
+            });
+
             function myFunction() {
                 // Declare variables 
                 var input, filter, table, tr, td, i;
@@ -27,6 +38,10 @@
                         }
                     } 
                 }
+            }
+
+            function showCadUsuario() {
+                $('#cadUsuario').modal('show');
             }
         </script>
     </header>
@@ -60,7 +75,7 @@
                                         <input  type="text" id="myInput" onkeyup="myFunction()" placeholder="Pesquisar...">
                                     </div>
                                     <div class="col-md-4" align="right">
-                                        <button class="btn btn-success" data-toggle="modal" data-target="#cadastrousuario">Cadastrar Usuário</button>
+                                        <button class="btn btn-success" data-toggle="modal" data-target="#cadUsuario">Cadastrar Usuário</button>
                                     </div>
                                 </div>
                                 <div class="container"> 
@@ -72,6 +87,7 @@
                                                     <th>Email</th>
                                                     <th>Perfil</th>
                                                     <th>Senha</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -80,12 +96,28 @@
                                                     <td>pizani@squad.com.br</td>
                                                     <td>Admin</td>
                                                     <td>*********</td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadUsuario()">
+                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Lenfers</td>
                                                     <td>lenfers@squad.com.br</td>
                                                     <td>Admin</td>
                                                     <td>*********</td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadUsuario()">
+                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -116,5 +148,58 @@
                 </div>
             </div>
         </footer>
+        <!-- Modal -->
+        <div class="modal fade" id="cadUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Cadastrar Usuário</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="nome">Nome:</label>
+                                <input id="nome" value='' placeholder="Nome" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="email">Email:</label>
+                                <input id="email" value='' placeholder="Email" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="senha">Senha:</label>
+                                <input id="senha" value='' type="password" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="confSenha">Confirmar senha:</label>
+                                <input id="confSenha" value='' type="password" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="perfil">Perfil:</label>
+                                <select id="perfil" class="form-control select2" style="width: 250px;">
+                                    <option value=""></option>
+                                    <option value="admin">Admin</option>
+                                    <option value="gerente">Gerente</option>
+                                    <option value="caixa">Caixa</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Cadastrar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

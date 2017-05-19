@@ -1,13 +1,24 @@
 <html>
     <header>
         <meta charset="UTF-8" />
-        <title>Caixa</title>
+        <title>Bem vindo ao Squad - Caixa</title>
         <link rel="stylesheet" href="css/reset.css" type="text/css">
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/estilo.css" type="text/css">
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="css/select2.min.css" type="text/css">
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/select2.full.min.js"></script>
         <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+                $(".select2").select2({
+                    placeholder: "Selecione um produto",
+                    theme: "classic"
+                });
+            });
+
             function myFunction() {
                 // Declare variables 
                 var input, filter, table, tr, td, i;
@@ -27,6 +38,10 @@
                         }
                     } 
                 }
+            }
+
+            function showAlterarQtd() {
+                $('#alterarQtd').modal('show');
             }
         </script>
     </header>
@@ -59,10 +74,10 @@
                                     <div class="col-md-8 form-inline" >
                                         <div class="form-group">
                                             <label for="produto">Produto:</label>
-                                            <select class="form-control " id="produto">
-                                                <option>Selecione o Produto</option>
-                                                <option>Maçã</option>
-                                                <option>Uva</option>
+                                            <select id="produto" class="form-control select2" style="width: 250px">
+                                                <option value=""></option>
+                                                <option value="maca">Maçã</option>
+                                                <option value="uva">Uva</option>
                                             </select>    
                                         </div>
                                         <label for="example-number-input" class="col-2 col-form-label">Quantidade</label>
@@ -70,7 +85,7 @@
                                     </div>
                                     <div class="col-md-4" align="right">
                                         <div class="form-group">
-                                            <button class="btn btn-info" data-toggle="modal" data-target="#cadastrousuario">Confirmar</button>
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#confimaCompra">Confirmar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -86,6 +101,7 @@
                                                     <th>Valor</th>
                                                     <th>Desconto</th>
                                                     <th>Valor total</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -95,8 +111,16 @@
                                                     <td>5</td>
                                                     <td>R$ 3,00</td>
                                                     <td>R$ 15,00</td>
-                                                    <th>-</th>
-                                                    <th>R$ 15,00</th>
+                                                    <td>-</td>
+                                                    <td>R$ 15,00</td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showAlterarQtd()">
+                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td><img src="imagens/uva.png" class="img-responsive miniatureImage"></td>
@@ -104,8 +128,16 @@
                                                     <td>10</td>
                                                     <td>R$ 2,00</td>
                                                     <td>R$ 20,00</td>
-                                                    <th>50%</th>
-                                                    <th>R$ 10,00</th>
+                                                    <td>50%</td>
+                                                    <td>R$ 10,00</td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showAlterarQtd()">
+                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -129,7 +161,7 @@
                         <div class="col-md-6" align="right">
                             <div class="form-group">
                                 <button class="btn btn-danger" data-toggle="modal" data-target="#cadastrousuario">Limpar</button>
-                                <button class="btn btn-success" data-toggle="modal" data-target="#cadastrousuario">Finalizar Compra</button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#cadastrousuario">Finalizar Compra</button>
                             </div>
                         </div>
                     </div>
@@ -146,5 +178,37 @@
                 </div>
             </div>
         </footer>
+        <!-- Modal -->
+        <div class="modal fade" id="alterarQtd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Alterar Quantidade</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="nome">Nome produto:</label>
+                                <input id="nome" value='Maçâ' disabled type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="nome">Quantidade por Unidade:</label>
+                            </div>
+                            <div class="col-md-2">
+                                <input id="nome" value='5' type="number" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Editar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
