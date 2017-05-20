@@ -43,6 +43,20 @@
                 }
             }
 
+            function exibir_ocultar(){
+                var valor = $("#promocao").val();
+
+                if(valor == 'Não'){
+                     $("#isPromocao").hide();
+                     $("#dtPromocao").hide();
+                     $("#qtdPromocao").hide();
+                 } else {
+                     $("#isPromocao").show();
+                     $("#dtPromocao").show();
+                     $("#qtdPromocao").show();
+                 }
+            };
+
             function showCadProduto() {
                 $('#cadProduto').modal('show');
             }
@@ -544,7 +558,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="nome">Unidade de medida:</label>
-                                <input id="nome" value='' placeholder="ex: Kg, unidade" type="text" class="form-control" />
+                                <input id="nome" value='' placeholder="ex: KG, unidade" type="text" class="form-control" />
                             </div>
                         </div>
 
@@ -562,15 +576,24 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="nome">Promoção:</label>
-                                <input id="nome" value='' placeholder="R$ 0.00" type="text" class="form-control" />
+                                <select id="promocao" class="form-control" onchange="exibir_ocultar()">
+                                    <option>Não</option>
+                                    <option>Sim</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row" id="isPromocao"style="display: none;">
+                            <div class="col-md-4">
+                                <label for="nome">% Promoção:</label>
+                                <input  value='' placeholder="ex: 50%" type="text" class="form-control" />
                             </div>
                             <div class="col-md-4">
-                                <label for="nome">% promoção:</label>
-                                <input id="nome" value='' placeholder="ex: 50%" type="text" class="form-control" />
+                                <label for="nome">Quantidade Mínima:</label>
+                                <input  value='' placeholder="ex: 2" type="text" class="form-control" />
                             </div>
                             <div class="col-md-4">
-                                <label for="nome">Qtd minima:</label>
-                                <input id="nome" value='' placeholder="ex: 2" type="text" class="form-control" />
+                                <label for="nome">Validade Promoção:</label>
+                                <input  value='' placeholder="ex: 25/01/2017" type="text" class="form-control" />
                             </div>
                         </div>
                     </div>
