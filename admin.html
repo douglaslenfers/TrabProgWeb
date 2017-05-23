@@ -7,9 +7,11 @@
         <link rel="stylesheet" href="css/estilo.css" type="text/css">
         <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
         <link rel="stylesheet" href="css/select2.min.css" type="text/css">
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/select2.full.min.js"></script>
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/select2.full.min.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="js/admin.js"></script>
         <script>
             $(document).ready(function(){
                 $('[data-toggle="tooltip"]').tooltip();
@@ -156,48 +158,50 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">Cadastrar Usuário</h4>
                     </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="nome">Nome:</label>
-                                <input id="nome" value='' placeholder="Nome" type="text" class="form-control" />
+                    <form id="formAdmin">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="nome">Nome:</label>
+                                    <input id="nome" name="nome" placeholder="Nome" type="text" class="form-control" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="email">Email:</label>
-                                <input id="email" value='' placeholder="Email" type="text" class="form-control" />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="email">Email:</label>
+                                    <input id="email" name="email" placeholder="Email" type="text" class="form-control" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="senha">Senha:</label>
-                                <input id="senha" value='' type="password" class="form-control" />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="senha">Senha:</label>
+                                    <input id="senha" name="senha" type="password" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="confSenha">Confirmar senha:</label>
+                                    <input id="confSenha" name="confSenha" type="password" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="perfil">Perfil:</label>
+                                    <select id="perfil" name="perfil" class="form-control select2" style="width: 250px;">
+                                        <option value=""></option>
+                                        <option value="admin">Admin</option>
+                                        <option value="gerente">Gerente</option>
+                                        <option value="caixa">Caixa</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="confSenha">Confirmar senha:</label>
-                                <input id="confSenha" value='' type="password" class="form-control" />
-                            </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="perfil">Perfil:</label>
-                                <select id="perfil" class="form-control select2" style="width: 250px;">
-                                    <option value=""></option>
-                                    <option value="admin">Admin</option>
-                                    <option value="gerente">Gerente</option>
-                                    <option value="caixa">Caixa</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Cadastrar</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
