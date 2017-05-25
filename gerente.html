@@ -7,9 +7,11 @@
         <link rel="stylesheet" href="css/estilo.css" type="text/css">
         <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
         <link rel="stylesheet" href="css/select2.min.css" type="text/css">
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/select2.full.min.js"></script>
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/select2.full.min.js"></script>
+        <script type="text/javascript" src="js/gerente.js"></script>
         <style type="text/css">
             ${demo.css}
         </style>
@@ -62,8 +64,8 @@
             }
 
             function excluirLin() {
-                if (confirm("Tem certeza?")) {
-                    alert("então, tá.");   
+                if (confirm("Tem certeza que deseja remover esse produto?")) {
+                    alert("Feito!");
                 }
             }
         </script>
@@ -82,10 +84,13 @@
                 <div class="collapse navbar-collapse" id="barranavegacao">
                     <ul class="nav navbar-nav navbar-right">
                         <li role="presentation" class="active">
-                            <a href="#produtos" aria-controls="controle-saldo" role="tab" data-toggle="tab">Produtos</a>
+                            <a href="#produtos" role="tab" data-toggle="tab">Produtos</a>
                         </li>
                         <li role="presentation">
-                            <a href="#relatorio" aria-controls="demonstrativo-saldo" role="tab" data-toggle="tab">Relatório</a>
+                            <a href="#relatorio" role="tab" data-toggle="tab">Relatórios</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#produtos_vencidos" role="tab" data-toggle="tab">Produtos Vencidos</a>
                         </li>
                         <li><a href="index.html">Sair</a></li>
                     </ul>
@@ -169,39 +174,70 @@
                             </div> 
                         </div>
                         <div role="tabpanel" class="tab-pane" id="relatorio">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12  texto-capa">
-                                        <div id="container2" style="min-width: 30px; height: 400px; margin: 0 auto"></div>
-                                        <iframe width="1140" height="900" src="https://app.powerbi.com/view?r=eyJrIjoiZGJiOGI3ZTMtMWU3NC00NjE0LWI4ZmItZjg0OTdlNGE5MWYwIiwidCI6IjYxZjAyODQ3LTEwYmUtNDVjYi1hMGQ3LTUyMzE1M2FlZDU3NiJ9" frameborder="0" allowFullScreen="true"></iframe>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="nav nav-tabs">
+                                        <li role="presentation" class="active">
+                                            <a href="#grafico" role="tab" data-toggle="tab">Gráfico</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="#power_bi" role="tab" data-toggle="tab">Power BI</a>
+                                        </li>
+                                    </ul>
+                                    <div role="tabpanel">
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active" id="grafico">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div id="container2" style="min-width: 30px; height: 400px; margin: 0 auto"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="power_bi">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <iframe width="100%" height="100%" src="https://app.powerbi.com/view?r=eyJrIjoiZGJiOGI3ZTMtMWU3NC00NjE0LWI4ZmItZjg0OTdlNGE5MWYwIiwidCI6IjYxZjAyODQ3LTEwYmUtNDVjYi1hMGQ3LTUyMzE1M2FlZDU3NiJ9" frameborder="0" allowFullScreen="true"></iframe>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="produtos_vencidos">
+                            <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
-                                    <h2 style="text-align: center;">Produtos Vencidos</h2>
+                                        <h2 style="text-align: center;">Produtos Vencidos</h2>
                                         <table id="myTable" class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Imagem</th>
-                                                <th>Nome</th>
-                                                <th>Valor</th>
-                                                <th>Quantidade por unidade</th>
-                                                <th>Unidade de Medida</th>
-                                                <th>Validade</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><img src="imagens/maca.png" class="img-responsive miniatureImage" ></td>
-                                                <td>Maça</td>
-                                                <td>R$ 3,00</td>
-                                                <td>4</td>
-                                                <td>Unidade</td>
-                                                <td>25/01/2017</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Imagem</th>
+                                                    <th>Nome</th>
+                                                    <th>Valor</th>
+                                                    <th>Quantidade por unidade</th>
+                                                    <th>Unidade de Medida</th>
+                                                    <th>Validade</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><img src="imagens/maca.png" class="img-responsive miniatureImage" ></td>
+                                                    <td>Maça</td>
+                                                    <td>R$ 3,00</td>
+                                                    <td>4</td>
+                                                    <td>Unidade</td>
+                                                    <td>25/01/2017</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -221,10 +257,6 @@
             </div>
         </footer>
         <script type="text/javascript">
-
-
-
-
             // Create the chart
             Highcharts.chart('container2', {
                 chart: {
@@ -402,9 +434,8 @@
                     }]
                 }
             });
-
-
         </script>
+
         <!-- Modal -->
         <div class="modal fade" id="cadProduto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
             <div class="modal-dialog" role="document">
@@ -413,63 +444,70 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">Cadastrar Produto</h4>
                     </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="nome">Nome produto:</label>
-                                <input id="nome" value='' placeholder="ex: Maçã" type="text" class="form-control" />
+                    <form id="formGerente">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="nome_produto">Nome produto:</label>
+                                    <input id="nome_produto" name="nome_produto" placeholder="ex: Maçã" type="text" class="form-control" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="nome">Quantidade por Unidade:</label>
-                                <input id="nome" value='' placeholder="ex: 2" type="text" class="form-control" />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label">Select File</label>
+                                    <input id="image_produto" name="image_produto" type="file" accept="image/*" />
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label for="nome">Unidade de medida:</label>
-                                <input id="nome" value='' placeholder="ex: KG, unidade" type="text" class="form-control" />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="qtd_produto">Quantidade por Unidade:</label>
+                                    <input id="qtd_produto" name="qtd_produto" placeholder="ex: 2" type="number" min="1" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="unMedida_produto">Unidade de medida:</label>
+                                    <input id="unMedida_produto" name="unMedida_produto" placeholder="ex: KG, unidade" type="text" class="form-control" />
+                                </div>
                             </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="valor">Valor:</label>
+                                    <input id="valor" name="valor" placeholder="0.00" type="number" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validade">Validade:</label>
+                                    <input id="validade" name="validade" type="date" class="form-control" />
+                                </div>
+                            </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="nome">Valor:</label>
-                                <input id="nome" value='' placeholder="R$ 0.00" type="text" class="form-control" />
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="promocao">Promoção:</label>
+                                    <select id="promocao" name="promocao" class="form-control" onchange="exibir_ocultar()">
+                                        <option>Não</option>
+                                        <option>Sim</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label for="nome">Validade:</label>
-                                <input id="nome" value='' placeholder="ex: 25/03/2017" type="text" class="form-control" />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label for="nome">Promoção:</label>
-                                <select id="promocao" class="form-control" onchange="exibir_ocultar()">
-                                    <option>Não</option>
-                                    <option>Sim</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row" id="isPromocao"style="display: none;">
-                            <div class="col-md-4">
-                                <label for="nome">% Promoção:</label>
-                                <input  value='' placeholder="ex: 50%" type="text" class="form-control" />
-                            </div>
-                            <div class="col-md-4">
-                                <label for="nome">Quantidade Mínima:</label>
-                                <input  value='' placeholder="ex: 2" type="text" class="form-control" />
-                            </div>
-                            <div class="col-md-4">
-                                <label for="nome">Validade Promoção:</label>
-                                <input  value='' placeholder="ex: 25/01/2017" type="text" class="form-control" />
+                            <div class="row" id="isPromocao" style="display: none;">
+                                <div class="col-md-4">
+                                    <label for="percent_promocao">% Promoção:</label>
+                                    <input id="percent_promocao" name="percent_promocao" type="number" min="1" max="99" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="qtd_min_promocao">Quantidade Mínima:</label>
+                                    <input id="qtd_min_promocao" name="qtd_min_promocao" type="number" min="1" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validade_promocao">Validade Promoção:</label>
+                                    <input id="validade_promocao" name="validade_promocao" type="date" class="form-control" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Cadastrar</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
