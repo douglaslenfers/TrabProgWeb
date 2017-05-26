@@ -122,8 +122,8 @@ nav.navbar-transparente{
 .badge-notify{
     background:red;
     position:relative;
-    top: -20px;
-    left: -35px;
+    top: -10px;
+    left: -25px;
 }
 
 .notify_link {

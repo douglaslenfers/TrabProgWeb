@@ -69,8 +69,14 @@
                 }
             }
 
-            function retirarActive() {
-                $("#prod_venc_navbar_link").click();
+            function estoqueProdutos() {
+                $("#produto_navbar").click();
+                $("#estoque_prods").click();
+            }
+
+            function produtosVencidos() {
+                $("#produto_navbar").click();
+                $("#prods_vencidos").click();
             }
         </script>
     </header>
@@ -87,19 +93,24 @@
                 </div>
                 <div class="nav navbar-left">
                     <div class="dropdown">
-                        <button class="btn btn-primary btn-md btn-link" style="font-size:36px; color: #428bca;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <button class="btn btn-primary btn-md btn-link" style="font-size:24px; color: #428bca; margin-top: 10px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <span class="glyphicon glyphicon-bell"></span>
                         </button>
-                        <span class="badge badge-notify">2</span>
+                        <span class="badge badge-notify">3</span>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li onclick="retirarActive();">
+                            <li onclick="produtosVencidos();">
                                 <a class="notify_link">
                                     <label>Maçã</label> <span class="label label-danger">Vencido</span>
                                 </a>
                             </li>
-                            <li onclick="retirarActive();">
+                            <li onclick="produtosVencidos();">
                                 <a class="notify_link">
                                     <label>Coca-Cola</label> <span class="label label-warning">6 dias para vencer</span>
+                                </a>
+                            </li>
+                            <li onclick="estoqueProdutos();">
+                                <a class="notify_link">
+                                    <label>Coca-Cola</label> <span class="label label-warning">Estoque baixo</span>
                                 </a>
                             </li>
                         </ul>
@@ -108,13 +119,10 @@
                 <div class="collapse navbar-collapse" id="barranavegacao">
                     <ul class="nav navbar-nav navbar-right">
                         <li role="presentation" id="prod_navbar" class="active">
-                            <a href="#produtos" role="tab" data-toggle="tab">Produtos</a>
+                            <a id="produto_navbar" href="#produtos" role="tab" data-toggle="tab">Produtos</a>
                         </li>
                         <li role="presentation" id="rel_navbar">
                             <a href="#relatorio" role="tab" data-toggle="tab">Relatórios</a>
-                        </li>
-                        <li role="presentation" id="prod_venc_navbar">
-                            <a id="prod_venc_navbar_link" href="#produtos_vencidos" role="tab" data-toggle="tab">Produtos Vencidos</a>
                         </li>
                         <li><a href="index.html">Sair</a></li>
                     </ul>
@@ -127,75 +135,177 @@
                 <div role="tabpanel">
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="produtos">
-                            <div class="container" style="padding-top: 30px"> 
-                                <div class="col-md-8" >
-                                    <input  type="text" id="myInput" onkeyup="myFunction()" placeholder="Pesquisar...">
-                                </div>
-                                <div class="col-md-4" align="right">
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#cadProduto">Cadastrar produto</button>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="nav nav-tabs">
+                                        <li role="presentation" class="active">
+                                            <a href="#prod_produtos" role="tab" data-toggle="tab">Produtos</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a id="prods_vencidos" href="#prod_vencidos" role="tab" data-toggle="tab">Vencidos</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a id="estoque_prods" href="#prod_estoque" role="tab" data-toggle="tab">Estoque</a>
+                                        </li>
+                                    </ul>
+                                    <div role="tabpanel">
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active" id="prod_produtos">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="container" style="padding-top: 30px"> 
+                                                                <div class="col-md-8" >
+                                                                    <input  type="text" id="myInput" onkeyup="myFunction()" placeholder="Pesquisar...">
+                                                                </div>
+                                                                <div class="col-md-4" align="right">
+                                                                    <button class="btn btn-success" data-toggle="modal" data-target="#cadProduto">Cadastrar produto</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="container"> 
+                                                                <div class="col-md-12">
+                                                                    <table id="myTable" class="table table-hover">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Imagem</th>
+                                                                                <th>Nome</th>
+                                                                                <th>Valor</th>
+                                                                                <th>Quantidade por unidade</th>
+                                                                                <th>Unidade de Medida</th>
+                                                                                <th>Validade</th>
+                                                                                <th>Promoção</th>
+                                                                                <th>% Promoção</th>
+                                                                                <th>Qtd mínima para desconto</th>
+                                                                                <th></th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td><img src="imagens/maca.png" class="img-responsive miniatureImage" ></td>
+                                                                                <td>Maça</td>
+                                                                                <td>R$ 3,00</td>
+                                                                                <td>4</td>
+                                                                                <td>-</td>
+                                                                                <td>25/06/2017</td>
+                                                                                <td>Não</td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                                <td class="text-center">
+                                                                                    <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadProduto()">
+                                                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                                    </button>
+                                                                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="excluirLin()">
+                                                                                        <i class="fa fa-times"></i>
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><img src="imagens/coca_cola.jpg" class="img-responsive miniatureImage" ></td>
+                                                                                <td>Coca-Cola</td>
+                                                                                <td>R$ 6,90</td>
+                                                                                <td>2</td>
+                                                                                <td>Litros</td>
+                                                                                <td>01/06/2017</td>
+                                                                                <td>Não</td>
+                                                                                <td>-</td>
+                                                                                <td>-</td>
+                                                                                <td class="text-center">
+                                                                                    <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadProduto()">
+                                                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                                    </button>
+                                                                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="excluirLin()">
+                                                                                        <i class="fa fa-times"></i>
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="prod_vencidos">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h2 style="text-align: center;">Produtos Vencidos</h2>
+                                                            <table id="myTable" class="table table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Imagem</th>
+                                                                        <th>Nome</th>
+                                                                        <th>Valor</th>
+                                                                        <th>Quantidade por unidade</th>
+                                                                        <th>Unidade de Medida</th>
+                                                                        <th>Validade</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><img src="imagens/maca.png" class="img-responsive miniatureImage" ></td>
+                                                                        <td>Maça</td>
+                                                                        <td>R$ 3,00</td>
+                                                                        <td>4</td>
+                                                                        <td>Unidade</td>
+                                                                        <td>25/06/2017</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><img src="imagens/coca_cola.jpg" class="img-responsive miniatureImage" ></td>
+                                                                        <td>Coca-Cola</td>
+                                                                        <td>R$ 6,90</td>
+                                                                        <td>2</td>
+                                                                        <td>Litros</td>
+                                                                        <td>01/06/2017</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="prod_estoque">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h2 style="text-align: center;">Estoque Produtos</h2>
+                                                            <table id="myTable" class="table table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Imagem</th>
+                                                                        <th>Nome</th>
+                                                                        <th>Quantidade em estoque</th>
+                                                                        <th>Quantidade máxima</th>
+                                                                        <th>Quantidade mínima</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><img src="imagens/maca.png" class="img-responsive miniatureImage" ></td>
+                                                                        <td>Maça</td>
+                                                                        <td>1000</td>
+                                                                        <td>2000</td>
+                                                                        <td>100</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><img src="imagens/coca_cola.jpg" class="img-responsive miniatureImage" ></td>
+                                                                        <td>Coca-Cola</td>
+                                                                        <td>89</td>
+                                                                        <td>1500</td>
+                                                                        <td>200</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="container"> 
-                                <div class="col-md-12">
-                                    <table id="myTable" class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Imagem</th>
-                                                <th>Nome</th>
-                                                <th>Valor</th>
-                                                <th>Quantidade por unidade</th>
-                                                <th>Unidade de Medida</th>
-                                                <th>Validade</th>
-                                                <th>Promoção</th>
-                                                <th>% Promoção</th>
-                                                <th>Qtd mínima para desconto</th>
-                                                <th></th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><img src="imagens/maca.png" class="img-responsive miniatureImage" ></td>
-                                                <td>Maça</td>
-                                                <td>R$ 3,00</td>
-                                                <td>4</td>
-                                                <td>-</td>
-                                                <td>25/06/2017</td>
-                                                <td>Não</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td class="text-center">
-                                                    <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadProduto()">
-                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="excluirLin()">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="imagens/coca_cola.jpg" class="img-responsive miniatureImage" ></td>
-                                                <td>Coca-Cola</td>
-                                                <td>R$ 6,90</td>
-                                                <td>2</td>
-                                                <td>Litros</td>
-                                                <td>01/06/2017</td>
-                                                <td>Não</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td class="text-center">
-                                                    <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadProduto()">
-                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="excluirLin()">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div> 
                         </div>
                         <div role="tabpanel" class="tab-pane" id="relatorio">
                             <div class="row">
@@ -229,45 +339,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="produtos_vencidos">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h2 style="text-align: center;">Produtos Vencidos</h2>
-                                        <table id="myTable" class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Imagem</th>
-                                                    <th>Nome</th>
-                                                    <th>Valor</th>
-                                                    <th>Quantidade por unidade</th>
-                                                    <th>Unidade de Medida</th>
-                                                    <th>Validade</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><img src="imagens/maca.png" class="img-responsive miniatureImage" ></td>
-                                                    <td>Maça</td>
-                                                    <td>R$ 3,00</td>
-                                                    <td>4</td>
-                                                    <td>Unidade</td>
-                                                    <td>25/06/2017</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src="imagens/coca_cola.jpg" class="img-responsive miniatureImage" ></td>
-                                                    <td>Coca-Cola</td>
-                                                    <td>R$ 6,90</td>
-                                                    <td>2</td>
-                                                    <td>Litros</td>
-                                                    <td>01/06/2017</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -484,7 +555,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label class="control-label">Select File</label>
+                                    <label class="control-label">Selecione uma imagem:</label>
                                     <input id="image_produto" name="image_produto" type="file" accept="image/*" />
                                 </div>
                             </div>
@@ -508,7 +579,16 @@
                                     <input id="validade" name="validade" type="date" class="form-control" />
                                 </div>
                             </div>
-
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="qtd_estoque">Quantidade em estoque:</label>
+                                    <input id="qtd_estoque" name="qtd_estoque" min="0" type="number" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="qtd_min_estoque">Quantidade em estoque:</label>
+                                    <input id="qtd_min_estoque" name="qtd_min_estoque" min="0" type="number" class="form-control" />
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <label for="promocao">Promoção:</label>

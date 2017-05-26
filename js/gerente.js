@@ -26,6 +26,14 @@ $(document).ready(function() {
             validade: {
                 required: true
             },
+            qtd_min_estoque: {
+                required: true,
+                min: 1
+            },
+            qtd_estoque: {
+                required: true,
+                min: 0
+            },
             percent_promocao: {
                 number: true,
                 min: 1,
