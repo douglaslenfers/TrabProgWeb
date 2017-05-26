@@ -57,10 +57,10 @@ $(document).ready(function() {
             if (user == "admin" && pass == "admin") {
                 //redirect to adminPage
                 window.open("admin.html","_self");
-            } else if (user == "manager" && pass == "manager") {
+            } else if (user == "gerente" && pass == "gerente") {
                 //redirect to managerPage
                 window.open("gerente.html","_self");
-            } else if (user == "box" && pass == "box") {
+            } else if (user == "caixa" && pass == "caixa") {
                 //redirect to boxPage
                 window.open("caixa.html","_self");
             } else {
