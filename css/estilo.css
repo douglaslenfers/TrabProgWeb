@@ -118,3 +118,18 @@ nav.navbar-transparente{
 .row {
     margin-top: 10px;
 }
+
+.badge-notify{
+    background:red;
+    position:relative;
+    top: -20px;
+    left: -35px;
+}
+
+.notify_link {
+    text-decoration: none;
+}
+
+.notify_link.focus {
+    color: #40a97b;
+}

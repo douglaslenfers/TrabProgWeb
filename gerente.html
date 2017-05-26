@@ -68,6 +68,10 @@
                     alert("Feito!");
                 }
             }
+
+            function retirarActive() {
+                $("#prod_venc_navbar_link").click();
+            }
         </script>
     </header>
     <body>
@@ -81,16 +85,36 @@
                         <img src="imagens/logo.png" class="img-logo">
                     </a>
                 </div>
+                <div class="nav navbar-left">
+                    <div class="dropdown">
+                        <button class="btn btn-primary btn-md btn-link" style="font-size:36px; color: #428bca;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="glyphicon glyphicon-bell"></span>
+                        </button>
+                        <span class="badge badge-notify">2</span>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li onclick="retirarActive();">
+                                <a class="notify_link">
+                                    <label>Maçã</label> <span class="label label-danger">Vencido</span>
+                                </a>
+                            </li>
+                            <li onclick="retirarActive();">
+                                <a class="notify_link">
+                                    <label>Coca-Cola</label> <span class="label label-warning">6 dias para vencer</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="collapse navbar-collapse" id="barranavegacao">
                     <ul class="nav navbar-nav navbar-right">
-                        <li role="presentation" class="active">
+                        <li role="presentation" id="prod_navbar" class="active">
                             <a href="#produtos" role="tab" data-toggle="tab">Produtos</a>
                         </li>
-                        <li role="presentation">
+                        <li role="presentation" id="rel_navbar">
                             <a href="#relatorio" role="tab" data-toggle="tab">Relatórios</a>
                         </li>
-                        <li role="presentation">
-                            <a href="#produtos_vencidos" role="tab" data-toggle="tab">Produtos Vencidos</a>
+                        <li role="presentation" id="prod_venc_navbar">
+                            <a id="prod_venc_navbar_link" href="#produtos_vencidos" role="tab" data-toggle="tab">Produtos Vencidos</a>
                         </li>
                         <li><a href="index.html">Sair</a></li>
                     </ul>
@@ -136,7 +160,7 @@
                                                 <td>R$ 3,00</td>
                                                 <td>4</td>
                                                 <td>-</td>
-                                                <td>25/01/2017</td>
+                                                <td>25/06/2017</td>
                                                 <td>Não</td>
                                                 <td>-</td>
                                                 <td>-</td>
@@ -150,12 +174,12 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td><img src="imagens/maca.png" class="img-responsive miniatureImage" ></td>
-                                                <td>teste</td>
-                                                <td>R$ 3,00</td>
-                                                <td>4</td>
-                                                <td>-</td>
-                                                <td>25/01/2017</td>
+                                                <td><img src="imagens/coca_cola.jpg" class="img-responsive miniatureImage" ></td>
+                                                <td>Coca-Cola</td>
+                                                <td>R$ 6,90</td>
+                                                <td>2</td>
+                                                <td>Litros</td>
+                                                <td>01/06/2017</td>
                                                 <td>Não</td>
                                                 <td>-</td>
                                                 <td>-</td>
@@ -174,7 +198,6 @@
                             </div> 
                         </div>
                         <div role="tabpanel" class="tab-pane" id="relatorio">
-
                             <div class="row">
                                 <div class="col-md-12">
                                     <ul class="nav nav-tabs">
@@ -182,7 +205,7 @@
                                             <a href="#grafico" role="tab" data-toggle="tab">Gráfico</a>
                                         </li>
                                         <li role="presentation">
-                                            <a href="#power_bi" role="tab" data-toggle="tab">Power BI</a>
+                                            <a href="#power_bi" role="tab" data-toggle="tab">BI</a>
                                         </li>
                                     </ul>
                                     <div role="tabpanel">
@@ -201,7 +224,6 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <iframe width="1180" height="720" src="https://app.powerbi.com/view?r=eyJrIjoiZTAzNTA1NTQtZjllMi00ZjMzLThhNTEtODM4N2JjZjZhYjliIiwidCI6IjYxZjAyODQ3LTEwYmUtNDVjYi1hMGQ3LTUyMzE1M2FlZDU3NiJ9" frameborder="0" allowFullScreen="true"></iframe>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -210,14 +232,12 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div role="tabpanel" class="tab-pane" id="produtos_vencidos">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h2 style="text-align: center;">Produtos Vencidos</h2>
-                                            
                                         <table id="myTable" class="table table-hover">
                                             <thead>
                                                 <tr>
@@ -236,7 +256,15 @@
                                                     <td>R$ 3,00</td>
                                                     <td>4</td>
                                                     <td>Unidade</td>
-                                                    <td>25/01/2017</td>
+                                                    <td>25/06/2017</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src="imagens/coca_cola.jpg" class="img-responsive miniatureImage" ></td>
+                                                    <td>Coca-Cola</td>
+                                                    <td>R$ 6,90</td>
+                                                    <td>2</td>
+                                                    <td>Litros</td>
+                                                    <td>01/06/2017</td>
                                                 </tr>
                                             </tbody>
                                         </table>
