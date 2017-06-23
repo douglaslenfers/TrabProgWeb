@@ -5,6 +5,9 @@ public abstract class Pessoa {
 	private String nome;
 	private String senha;
 	private String email;
+	private String tipo;
+	
+	
 	
 	public String getId() {
 		return id;
@@ -29,6 +32,12 @@ public abstract class Pessoa {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 	

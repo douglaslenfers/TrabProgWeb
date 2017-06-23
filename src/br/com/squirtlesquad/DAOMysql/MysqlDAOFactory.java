@@ -18,8 +18,8 @@ public class MysqlDAOFactory extends DAOFactory {
     public static Connection ConnectDb() {
         try {
         	
-            Class.forName("org.sqlite.JDBC"); //C:\Users\André\OneDrive\workspace\Copy of Copy of Trabalho Final
-            cone = DriverManager.getConnection("jdbc:sqlite:C:/Users/André/OneDrive/workspace/Copy of Copy of Trabalho Final/bancoBiblioteca.sqlite");
+            Class.forName("mysql-connector-java-5.1.42-bin"); //C:\Users\André\OneDrive\workspace\Copy of Copy of Trabalho Final
+            cone = DriverManager.getConnection("jdbc:mysql://127.0.0.1/squirtle_squad","root","toor");
             //JOptionPane.showMessageDialog(null, "CONNECTION ESTABLISHED biblioteca");
             return cone;
         } catch (Exception e) {
