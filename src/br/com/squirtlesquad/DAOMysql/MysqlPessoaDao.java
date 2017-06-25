@@ -22,7 +22,7 @@ public class MysqlPessoaDao implements PessoaDao {
 
     Connection conn = null;
     PreparedStatement ps = null;
-    private Pessoa tipoPessoa;
+    private Pessoa pessoa;
 
     public MysqlPessoaDao() {
         conn = MysqlDAOFactory.ConnectDb();
@@ -88,10 +88,12 @@ public class MysqlPessoaDao implements PessoaDao {
         PreparedStatement ps = null;
         try {
             conn = MysqlDAOFactory.ConnectDb();
-            ps = conn.prepareStatement("UPDATE Pessoa SET nome = ?, id_pessoa = ? WHERE id_pessoa = ?");
+            ps = conn.prepareStatement("UPDATE Pessoa SET nome = ?, id_user = ?, senha = ?, tipo_usuario = ? WHERE id_user = ?");
             ps.setString(1, pessoa.getNome());
             ps.setString(2, pessoa.getId());
-            ps.setString(3, id);
+            ps.setString(3, pessoa.getSenha());
+            ps.setString(4, pessoa.getTipo());
+            ps.setString(5, id);
             ps.execute();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro no MysqlPessoaDao.updatePessoa \n " + ex.getMessage());
@@ -108,51 +110,23 @@ public class MysqlPessoaDao implements PessoaDao {
         }
     }
 
-    @Override
-    public int getIdPessoa(String id) {
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        int idRetornado = 0;
-        try {
-            conn = MysqlDAOFactory.ConnectDb();
-            ps = conn.prepareStatement("SELECT id_user FROM Pessoa WHERE id_user = ?");
-            ps.setString(1, id);
-            rs = ps.executeQuery();
-            idRetornado = rs.getInt("id_user");
-            return idRetornado;
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro no MysqlPessoaDao.selectPessoa \n " + ex.getMessage());
-        } finally {
-            try {
-                if (ps != null) {
-                    ps.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (Exception e) {
-            }
-        }
-        return idRetornado;
-    }
-
-    public Pessoa selectPessoaFromId(String id) {
+    public Pessoa selectPessoa(String id) {
         ResultSet rs = null;
         Connection conn = null;
         PreparedStatement ps = null;
-        tipoPessoa = null;
+        
         try {
             conn = MysqlDAOFactory.ConnectDb();
-            ps = conn.prepareStatement("SELECT nome, id_user FROM pessoa WHERE id_user = ?");
+            ps = conn.prepareStatement("SELECT nome FROM pessoa WHERE id_user = ?");
             ps.setString(1, id);
             rs = ps.executeQuery();
-            tipoPessoa.setId(id);
-            tipoPessoa.setNome(rs.getString("nome"));
-
-            return tipoPessoa;
+			while(rs.next()){
+				pessoa = new Pessoa();
+	            pessoa.setNome(rs.getString("nome"));
+			}
+            return pessoa;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro no MysqlLivroDao.selectLivro \n " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro no MysqlPessoaDao.selectAllPessoa \n " + ex.getMessage());
             return null;
         } finally {
             try {
@@ -171,22 +145,44 @@ public class MysqlPessoaDao implements PessoaDao {
     }
 
 	@Override
-	public Object selectPessoa(String matricula, Pessoa tipoPessoa) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void insertAllPessoa(List<Pessoa> pessoas) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public List<Pessoa> selectAllPessoa() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Pessoa pessoa = null;
+        List<Pessoa> lista = new ArrayList();
+        try {
+
+            conn = MysqlDAOFactory.ConnectDb();
+            ps = conn.prepareStatement("Select * from pessoa");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String id = rs.getString("id_user");
+                pessoa.setNome(rs.getString("nome"));
+                pessoa.setSenha(rs.getString("senha"));
+                pessoa.setTipo(rs.getString("tipo_usuario"));
+                lista.add(pessoa);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro no MysqlPessoaDao.selectAllPessoa \n " + ex.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+        return lista;
+    }
 
 
 }

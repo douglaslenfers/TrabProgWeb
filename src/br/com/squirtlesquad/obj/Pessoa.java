@@ -1,6 +1,6 @@
 package br.com.squirtlesquad.obj;
 
-public abstract class Pessoa {
+public class Pessoa {
 	private String id;
 	private String nome;
 	private String senha;

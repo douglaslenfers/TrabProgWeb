@@ -10,23 +10,15 @@ import java.util.List;
 import br.com.squirtlesquad.obj.Pessoa;
 
 
-/**
- *
- * @author Hiroshi
- */
 public interface PessoaDao {
 
     public void insertPessoa(Pessoa pessoa);
 
-    public void removePessoa(String matricula);
+    public void removePessoa(String id);
 
-    public void updatePessoa(Pessoa pessoa, String matricula);
+    public void updatePessoa(Pessoa pessoa, String id);
 
-    public int getIdPessoa(String matricula);
-
-    public Object selectPessoa(String matricula, Pessoa tipoPessoa);
-    
-    public void insertAllPessoa(List<Pessoa> pessoas);
+    public Object selectPessoa(String id);
     
     public List<Pessoa> selectAllPessoa();
     

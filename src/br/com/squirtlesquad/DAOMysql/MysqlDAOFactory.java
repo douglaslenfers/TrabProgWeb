@@ -17,9 +17,7 @@ public class MysqlDAOFactory extends DAOFactory {
 
     public static Connection ConnectDb() {
         try {
-        	
-            Class.forName("mysql-connector-java-5.1.42-bin"); //C:\Users\André\OneDrive\workspace\Copy of Copy of Trabalho Final
-            cone = DriverManager.getConnection("jdbc:mysql://127.0.0.1/squirtle_squad","root","toor");
+            cone = DriverManager.getConnection("jdbc:mysql://localhost/squirtle_squad","root","toor");
             //JOptionPane.showMessageDialog(null, "CONNECTION ESTABLISHED biblioteca");
             return cone;
         } catch (Exception e) {
@@ -28,9 +26,9 @@ public class MysqlDAOFactory extends DAOFactory {
         }
     }
 
-    public void desconectar() {// Metodo para fechar a conexao do bd
+    public void desconectar() {
         try {
-            cone.close();// fecha a conexao
+            cone.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
