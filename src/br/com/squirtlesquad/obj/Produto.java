@@ -1,6 +1,7 @@
 package br.com.squirtlesquad.obj;
 
 public class Produto {
+	private int id;
 	private String nome;
 	private String descricao;
 	private int quantidade;
@@ -9,6 +10,8 @@ public class Produto {
 	private int promocao;
 	private double porcentagemPromocao;
 	private int quantidadeMinDesconto;
+	private String caminhoImagem;
+	private double valorUnidade;
 	
 	public String getNome() {
 		return nome;
@@ -57,6 +60,24 @@ public class Produto {
 	}
 	public void setQuantidadeMinDesconto(int quantidadeMinDesconto) {
 		this.quantidadeMinDesconto = quantidadeMinDesconto;
+	}
+	public String getCaminhoImagem() {
+		return caminhoImagem;
+	}
+	public void setCaminhoImagem(String caminhoImagem) {
+		this.caminhoImagem = caminhoImagem;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public double getValorUnidade() {
+		return valorUnidade;
+	}
+	public void setValorUnidade(double valorUnidade) {
+		this.valorUnidade = valorUnidade;
 	}
 	
 	
