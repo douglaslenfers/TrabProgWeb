@@ -1,6 +1,7 @@
 package br.com.squirtlesquad.DAOMysql;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,17 +33,18 @@ public class MysqlProdutoDao implements ProdutoDao {
 		try {
 			conn = MysqlDAOFactory.ConnectDb();
 			ps = conn.prepareStatement(
-					"INSERT INTO Pessoa (id_produto, nome, desc, quantidade, valor_unidade, validade, imagem, is_promocao, porcentagem_promocao, qtd_minima_desconto) VALUES (?,?,?,?,?,?,?,?,?,?)");
+					"INSERT INTO produto (idproduto, nome, descricao, quantidade, valor_unidade, validade, imagem, is_promocao, porcentagem_promocao, qtd_minima_desconto, unidade_medida) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			ps.setInt(1, produto.getId());
 			ps.setString(2, produto.getNome());
 			ps.setString(3, produto.getDescricao());
 			ps.setInt(4, produto.getQuantidade());
 			ps.setDouble(5, produto.getValorUnidade());
-			ps.setString(6, produto.getDataValidade());
+			ps.setDate(6, new java.sql.Date(produto.getDataValidade().getTime()));
 			ps.setString(7, produto.getCaminhoImagem());
 			ps.setInt(8, produto.getPromocao());
 			ps.setDouble(9, produto.getPorcentagemPromocao());
 			ps.setInt(10, produto.getQuantidadeMinDesconto());
+			ps.setString(11, produto.getUnidadeMedida());
 
 			ps.execute();
 		} catch (SQLException ex) {
@@ -66,7 +68,7 @@ public class MysqlProdutoDao implements ProdutoDao {
 		PreparedStatement ps = null;
 		try {
 			conn = MysqlDAOFactory.ConnectDb();
-			ps = conn.prepareStatement("DELETE FROM Produto WHERE id_produto = ?");
+			ps = conn.prepareStatement("DELETE FROM Produto WHERE idproduto = ?");
 			ps.setString(1, id);
 			ps.execute();
 		} catch (SQLException ex) {
@@ -91,18 +93,19 @@ public class MysqlProdutoDao implements ProdutoDao {
 		try {
 			conn = MysqlDAOFactory.ConnectDb();
 			ps = conn.prepareStatement(
-					"UPDATE Pessoa SET id_produto = ?, nome = ?, desc = ?, quantidade = ?, valor_unidade = ?, validade = ?, imagem = ?, is_promocao = ?, porcentagem_promocao = ?, qtd_minima_desconto = ?  WHERE id_produto = ?");
+					"UPDATE produto SET idproduto = ?, nome = ?, descricao = ?, quantidade = ?, valor_unidade = ?, validade = ?, imagem = ?, is_promocao = ?, porcentagem_promocao = ?, qtd_minima_desconto = ?, unidade_medida = ?  WHERE idproduto = ?");
 			ps.setInt(1, produto.getId());
 			ps.setString(2, produto.getNome());
 			ps.setString(3, produto.getDescricao());
 			ps.setInt(4, produto.getQuantidade());
 			ps.setDouble(5, produto.getValorUnidade());
-			ps.setString(6, produto.getDataValidade());
+			ps.setDate(6, new java.sql.Date(produto.getDataValidade().getTime()));
 			ps.setString(7, produto.getCaminhoImagem());
 			ps.setInt(8, produto.getPromocao());
 			ps.setDouble(9, produto.getPorcentagemPromocao());
 			ps.setInt(10, produto.getQuantidadeMinDesconto());
-			ps.setString(11, id);
+			ps.setString(11, produto.getUnidadeMedida());
+			ps.setString(12, id);
 			ps.execute();
 		} catch (SQLException ex) {
 			JOptionPane.showMessageDialog(null, "Erro no MysqlProdutoDao.updateProduto \n " + ex.getMessage());
@@ -121,7 +124,7 @@ public class MysqlProdutoDao implements ProdutoDao {
 	}
 
 	@Override
-	public Object selectProduto(String id) {
+	public Produto selectProduto(String id) {
 		ResultSet rs = null;
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -129,22 +132,57 @@ public class MysqlProdutoDao implements ProdutoDao {
 		try {
 			conn = MysqlDAOFactory.ConnectDb();
 			ps = conn.prepareStatement(
-					"SELECT id_produto, nome, desc, quantidade, valor_unidade, validade, imagem, is_promocao, porcentagem_promocao, qtd_minima_desconto FROM produto WHERE id_produto = ?");
+					"SELECT idproduto, nome, quantidade, valor_unidade, validade, imagem, is_promocao, porcentagem_promocao, qtd_minima_desconto, descricao FROM produto WHERE idproduto = ?");
 			ps.setString(1, id);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				produto = new Produto();
 				produto.setNome(rs.getString("nome"));
-				produto.setId(rs.getInt("id_produto"));
-				produto.setDescricao(rs.getString("desc"));
+				produto.setId(rs.getInt("idproduto"));
+				produto.setDescricao(rs.getString("descricao"));
 				produto.setQuantidade(rs.getInt("quantidade"));
 				produto.setValorUnidade(rs.getDouble("valor_unidade"));
 				produto.setCaminhoImagem(rs.getString("imagem"));
 				produto.setPromocao(rs.getInt("is_promocao"));
 				produto.setPorcentagemPromocao(rs.getDouble("porcentagem_promocao"));
 				produto.setQuantidadeMinDesconto(rs.getInt("qtd_minima_desconto"));
+				produto.setDataValidade(rs.getDate("validade"));
 			}
 			return produto;
+		} catch (SQLException ex) {
+			JOptionPane.showMessageDialog(null, "Erro no MysqlProdutoDao.selectProduto \n " + ex.getMessage());
+			return null;
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (Exception e) {
+			}
+		}
+	}
+	
+	public Object selectProdutoId(String nome) {
+		ResultSet rs = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		int idProduto = -1;
+		try {
+			conn = MysqlDAOFactory.ConnectDb();
+			ps = conn.prepareStatement(
+					"SELECT idproduto FROM produto WHERE nome = ?");
+			ps.setString(1, nome);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				idProduto = rs.getInt("idproduto");
+			}
+			return idProduto;
 		} catch (SQLException ex) {
 			JOptionPane.showMessageDialog(null, "Erro no MysqlProdutoDao.selectProduto \n " + ex.getMessage());
 			return null;
@@ -181,14 +219,15 @@ public class MysqlProdutoDao implements ProdutoDao {
 			while (rs.next()) {
 				produto = new Produto();
 				produto.setNome(rs.getString("nome"));
-				produto.setId(rs.getInt("id_produto"));
-				produto.setDescricao(rs.getString("desc"));
+				produto.setId(rs.getInt("idproduto"));
+				produto.setDescricao(rs.getString("descricao"));
 				produto.setQuantidade(rs.getInt("quantidade"));
 				produto.setValorUnidade(rs.getDouble("valor_unidade"));
 				produto.setCaminhoImagem(rs.getString("imagem"));
 				produto.setPromocao(rs.getInt("is_promocao"));
 				produto.setPorcentagemPromocao(rs.getDouble("porcentagem_promocao"));
 				produto.setQuantidadeMinDesconto(rs.getInt("qtd_minima_desconto"));
+				produto.setDataValidade(rs.getDate("validade"));
 				lista.add(produto);
 			}
 

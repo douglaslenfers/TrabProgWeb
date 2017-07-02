@@ -1,12 +1,14 @@
 package br.com.squirtlesquad.obj;
 
+import java.util.Date;
+
 public class Produto {
 	private int id;
 	private String nome;
 	private String descricao;
 	private int quantidade;
 	private String unidadeMedida;
-	private String dataValidade;
+	private Date dataValidade;
 	private int promocao;
 	private double porcentagemPromocao;
 	private int quantidadeMinDesconto;
@@ -37,10 +39,10 @@ public class Produto {
 	public void setUnidadeMedida(String unidadeMedida) {
 		this.unidadeMedida = unidadeMedida;
 	}
-	public String getDataValidade() {
+	public Date getDataValidade() {
 		return dataValidade;
 	}
-	public void setDataValidade(String dataValidade) {
+	public void setDataValidade(Date dataValidade) {
 		this.dataValidade = dataValidade;
 	}
 	public int getPromocao() {
