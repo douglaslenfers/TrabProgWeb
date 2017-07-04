@@ -30,7 +30,13 @@ public class Main {
 		Connection conn = null;
 		conn = MysqlDAOFactory.ConnectDb();
 
-		
+		Produto p = new Produto();
+		Pessoa pe = new Pessoa();
+		p.setId(1);
+		pe.setId("1");
+		p.setValorUnidade(10);
+		p.setPromocao(0);
+
 
 		DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 		Date data = new Date(System.currentTimeMillis());
@@ -39,11 +45,11 @@ public class Main {
 
 		
 		MysqlVendaDao VendaDao = new MysqlVendaDao();
-		v = (Venda) VendaDao.selectVenda("1");
 		
-		
-		System.out.println(v.getDataVenda());
-	
+		v.setDataVenda();
+		v.addProduto(p);
+		v.setPessoa(pe);
+		VendaDao.insertVenda(v);
 		
 		
 		

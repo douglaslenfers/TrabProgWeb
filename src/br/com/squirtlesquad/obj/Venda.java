@@ -9,7 +9,7 @@ public class Venda {
 	private Pessoa pessoa;
 	private int idVenda;
 	private Date dataVenda;
-	
+	private double valor;
 	
 	public void addProduto(Produto p){
 		produto.add(p);
@@ -42,6 +42,12 @@ public class Venda {
 	public void setDataVenda(Date data) {
 		this.dataVenda = data;
 		
+	}
+	public double getValor() {
+		return valor;
+	}
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 	
 	

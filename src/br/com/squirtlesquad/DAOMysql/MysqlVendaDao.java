@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import br.com.squirtlesquad.DAOInterface.ProdutoDao;
 import br.com.squirtlesquad.DAOInterface.VendaDao;
 import br.com.squirtlesquad.obj.Pessoa;
 import br.com.squirtlesquad.obj.Produto;
@@ -34,11 +35,21 @@ public class MysqlVendaDao implements VendaDao{
 				System.out.println(p.getId());
 				conn = MysqlDAOFactory.ConnectDb();
 				ps = conn.prepareStatement(
-						"INSERT INTO venda (idvenda, idproduto, idfuncionario, dtvenda) VALUES (?, ?, ?, ?)");
+						"INSERT INTO venda (idvenda, idproduto, idfuncionario, dtvenda, valor) VALUES (?, ?, ?, ?, ?)");
 				ps.setInt(1, venda.getIdVenda());
 				ps.setInt(2, p.getId());
 				ps.setString(3, venda.getPessoa().getId());		
 				ps.setDate(4, new java.sql.Date(venda.getDataVenda().getTime()));
+				
+				if(p.getPromocao() == 1){
+					double valorPago = p.getPorcentagemPromocao() * p.getValorUnidade();
+					ps.setDouble(5, valorPago);
+				}else{
+					ps.setDouble(5, p.getValorUnidade());
+				}
+				
+				
+				
 				ps.execute();
 			}
 			
@@ -92,7 +103,7 @@ public class MysqlVendaDao implements VendaDao{
 		try {
 			conn = MysqlDAOFactory.ConnectDb();
 			ps = conn.prepareStatement(
-					"SELECT idvenda, idproduto, idfuncionario, dtvenda FROM venda WHERE idvenda = ?");
+					"SELECT idvenda, idproduto, idfuncionario, dtvenda, valor FROM venda WHERE idvenda = ?");
 			ps.setString(1, id);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -111,6 +122,8 @@ public class MysqlVendaDao implements VendaDao{
 				venda.addProduto(produto);
 				
 				venda.setDataVenda(rs.getDate("dtvenda"));
+				
+				venda.setValor(rs.getDouble("valor"));
 			}
 			return venda;
 		} catch (SQLException ex) {
