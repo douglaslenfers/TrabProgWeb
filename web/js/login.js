@@ -49,28 +49,5 @@ $(document).ready(function() {
         min: jQuery.validator.format("Insira um valor maior ou igual a {0}.")
     });
 
-    $("#formLogin").submit(function() {
-        event.preventDefault();
-        if ($("#formLogin").valid()) {
-            var user = $("#user").val();
-            var pass = $("#pass").val();
-            if (user == "admin" && pass == "admin") {
-                //redirect to adminPage
-                window.open("admin.html","_self");
-            } else if (user == "gerente" && pass == "gerente") {
-                //redirect to managerPage
-                window.open("gerente.html","_self");
-            } else if (user == "caixa" && pass == "caixa") {
-                //redirect to boxPage
-                window.open("caixa.html","_self");
-            } else {
-                var errors = { user: "Usuário ou senha incorreto.", pass: "Usuário ou senha incorreto." };
-                var validator = $("#formLogin").validate();
-                validator.showErrors(errors);
-                return;
-            }
-        } else {
-            return;
-        }
-    });
+    
 });

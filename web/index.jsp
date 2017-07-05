@@ -33,7 +33,7 @@
                 <div class="col-md-5 col-md-offset-3">
                     <div class="well telaLogin">
                         <img src="imagens/squirtlequad.png">
-                        <form id="formLogin">
+                        <form id="formLogin" method="post" action="${pageContext.request.contextPath}/ValidarAcesso" role = "form">
                             <div class="form-group">
                                 <label class="control-label" for="user">Usuário</label>
                                 <input id="user" name="user" placeholder="Usuário" type="text" class="form-control" />
