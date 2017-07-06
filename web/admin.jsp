@@ -60,6 +60,7 @@
 
             function excluirLin() {
                 if (confirm("Tem certeza que deseja excluir esse usuário?")) {
+                    document.form[]
                     alert("Feito!");
                 }
             }
@@ -115,7 +116,6 @@
                                             <c:forEach var="p" items="${listaPessoa}">
                                                 
                                                 <tr>
-                                                    
                                                     <td>${p.nome}</td>
                                                     <td>${p.tipo}</td>
                                                     <td>${p.senha}</td>
@@ -123,9 +123,9 @@
                                                         <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadUsuario(${login.id})">
                                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                                         </button>
-                                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="excluirLin(${login.id})">
+                                                        <a href="ExcluirUsuario?action=delete&id=${p.id}" name = "Excluir" type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="excluirLin(${login.id})">
                                                             <i class="fa fa-times"></i>
-                                                        </button>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             </c:forEach>

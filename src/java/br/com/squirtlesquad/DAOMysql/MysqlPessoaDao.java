@@ -193,10 +193,11 @@ public class MysqlPessoaDao implements PessoaDao {
 
             while (rs.next()) {
                 pessoa = new Pessoa();
-                String id = rs.getString("id_user");
+                //String id = rs.getString("id_user");
                 pessoa.setNome(rs.getString("nome"));
                 pessoa.setSenha(rs.getString("senha"));
                 pessoa.setTipo(rs.getString("tipo_usuario"));
+                pessoa.setId(rs.getString("id_user"));
                 lista.add(pessoa);
             }
 
