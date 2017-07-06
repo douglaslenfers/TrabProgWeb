@@ -143,7 +143,7 @@ public class MysqlPessoaDao implements PessoaDao {
     }
 
     public Pessoa verificarAcesso(String user, String pass) {
-         ResultSet rs = null;
+        ResultSet rs = null;
         Connection conn = null;
         PreparedStatement ps = null;
 

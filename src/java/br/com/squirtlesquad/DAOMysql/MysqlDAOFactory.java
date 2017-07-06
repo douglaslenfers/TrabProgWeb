@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-
 public class MysqlDAOFactory extends DAOFactory {
 
     public PreparedStatement ps;
@@ -17,10 +16,10 @@ public class MysqlDAOFactory extends DAOFactory {
 
     public static Connection ConnectDb() {
         try {
-            String driverName = "com.mysql.jdbc.Driver";                        
- 
+            String driverName = "com.mysql.jdbc.Driver";
+
             Class.forName(driverName);
-            cone = DriverManager.getConnection("jdbc:mysql://localhost:3306/squirtle_squad","root","toor");
+            cone = DriverManager.getConnection("jdbc:mysql://localhost:3306/squirtle_squad", "root", "toor");
             //JOptionPane.showMessageDialog(null, "CONNECTION ESTABLISHED biblioteca");
             return cone;
         } catch (Exception e) {
@@ -42,6 +41,5 @@ public class MysqlDAOFactory extends DAOFactory {
         // TODO Auto-generated method stub
         return new MysqlPessoaDao();
     }
-
 
 }

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : Jul 5, 2017, 8:25:48 AM
-    Author     : Douglas
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

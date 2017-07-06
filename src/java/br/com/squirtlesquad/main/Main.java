@@ -1,52 +1,29 @@
 package br.com.squirtlesquad.main;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.swing.JOptionPane;
 
 import br.com.squirtlesquad.DAOFactory.DAOFactory;
-import br.com.squirtlesquad.DAOInterface.PessoaDao;
 import br.com.squirtlesquad.DAOMysql.MysqlDAOFactory;
 import br.com.squirtlesquad.DAOMysql.MysqlPessoaDao;
-import br.com.squirtlesquad.DAOMysql.MysqlProdutoDao;
-import br.com.squirtlesquad.DAOMysql.MysqlVendaDao;
 import br.com.squirtlesquad.obj.Pessoa;
 import br.com.squirtlesquad.obj.Produto;
-import br.com.squirtlesquad.obj.Venda;
 
 public class Main {
-	public static DAOFactory dao = null;
 
-	public static void main(String[] args) throws ParseException {
+    public static DAOFactory dao = null;
 
-		Connection conn = null;
-		conn = MysqlDAOFactory.ConnectDb();
+    public static void main(String[] args) throws ParseException {
 
-		Produto p = new Produto();
-		Pessoa pe = new Pessoa();
-		
-                
-                MysqlPessoaDao pee = new MysqlPessoaDao();
-                System.out.println(pee.selectPessoa("1"));
-		
-                
-		
-		
+        Connection conn = null;
+        conn = MysqlDAOFactory.ConnectDb();
 
+        Produto p = new Produto();
+        Pessoa pe = new Pessoa();
 
-		
-		
-		
+        MysqlPessoaDao pee = new MysqlPessoaDao();
+        System.out.println(pee.selectPessoa("1"));
 
-
-	}
+    }
 
 }

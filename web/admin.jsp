@@ -1,8 +1,3 @@
-<%-- 
-    Document   : admin
-    Created on : Jul 5, 2017, 8:25:07 AM
-    Author     : Douglas
---%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
@@ -61,7 +56,7 @@
             function excluirLin() {
                 if (confirm("Tem certeza que deseja excluir esse usuário?")) {
                     document.form[]
-                    alert("Feito!");
+                            alert("Feito!");
                 }
             }
         </script>
@@ -101,7 +96,7 @@
                                 </div>
                                 <div class="container"> 
                                     <div class="col-md-12">
-                                        
+
                                         <table id="myTable" class="table table-hover">
                                             <thead>
                                                 <tr>
@@ -113,22 +108,22 @@
                                             </thead>
                                             <tbody>
 
-                                            <c:forEach var="p" items="${listaPessoa}">
-                                                
-                                                <tr>
-                                                    <td>${p.nome}</td>
-                                                    <td>${p.tipo}</td>
-                                                    <td>${p.senha}</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadUsuario(${login.id})">
-                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                        </button>
-                                                        <a href="ExcluirUsuario?action=delete&id=${p.id}" name = "Excluir" type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="excluirLin(${login.id})">
-                                                            <i class="fa fa-times"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
+                                                <c:forEach var="p" items="${listaPessoa}">
+
+                                                    <tr>
+                                                        <td>${p.nome}</td>
+                                                        <td>${p.tipo}</td>
+                                                        <td>${p.senha}</td>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadUsuario(${login.id})">
+                                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                            </button>
+                                                            <a href="ExcluirUsuario?action=delete&id=${p.id}" name = "Excluir" type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="excluirLin(${login.id})">
+                                                                <i class="fa fa-times"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>

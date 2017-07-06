@@ -23,34 +23,34 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/CadastrarUsuario")
 public class CadastrarUsuario extends HttpServlet {
-	private static final long serialVersionUID = 1L;
- 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-	}
- 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-                Pessoa p = new Pessoa();
-                List<Pessoa> listaPessoa = new ArrayList<>();
-		p.setNome(request.getParameter("nome"));
-                p.setSenha(request.getParameter("senha"));
-                p.setTipo(request.getParameter("perfil"));
-                
-                
-                MysqlPessoaDao pessoaDao = new MysqlPessoaDao();
-                
-                pessoaDao.insertPessoa(p);
-                
-                listaPessoa = pessoaDao.selectAllPessoa();
-                request.setAttribute("listaPessoa", listaPessoa);
-                String destino = "admin.jsp";
- 
-		//O sistema é direcionado para a página 
-		//sucesso.jsp Se tudo ocorreu bem
-		//erro.jsp se houver algum problema.
-		RequestDispatcher rd = request.getRequestDispatcher(destino);
-		rd.forward(request, response);
-	}
+
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        Pessoa p = new Pessoa();
+        List<Pessoa> listaPessoa = new ArrayList<>();
+        p.setNome(request.getParameter("nome"));
+        p.setSenha(request.getParameter("senha"));
+        p.setTipo(request.getParameter("perfil"));
+
+        MysqlPessoaDao pessoaDao = new MysqlPessoaDao();
+
+        pessoaDao.insertPessoa(p);
+
+        listaPessoa = pessoaDao.selectAllPessoa();
+        request.setAttribute("listaPessoa", listaPessoa);
+        String destino = "admin.jsp";
+
+        //O sistema é direcionado para a página 
+        //sucesso.jsp Se tudo ocorreu bem
+        //erro.jsp se houver algum problema.
+        RequestDispatcher rd = request.getRequestDispatcher(destino);
+        rd.forward(request, response);
+    }
 }
