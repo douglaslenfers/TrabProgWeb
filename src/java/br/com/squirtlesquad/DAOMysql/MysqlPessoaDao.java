@@ -16,8 +16,6 @@ import javax.swing.JOptionPane;
 import br.com.squirtlesquad.DAOInterface.PessoaDao;
 import br.com.squirtlesquad.obj.Pessoa;
 
-
-
 public class MysqlPessoaDao implements PessoaDao {
 
     Connection conn = null;
@@ -41,7 +39,7 @@ public class MysqlPessoaDao implements PessoaDao {
             ps.setString(2, pessoa.getNome());
             ps.setString(3, pessoa.getSenha());
             ps.setString(4, pessoa.getTipo());
-            
+
             ps.execute();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro no MysqlPessoaDao.insertPessoa \n " + ex.getMessage());
@@ -114,16 +112,16 @@ public class MysqlPessoaDao implements PessoaDao {
         ResultSet rs = null;
         Connection conn = null;
         PreparedStatement ps = null;
-        
+
         try {
             conn = MysqlDAOFactory.ConnectDb();
             ps = conn.prepareStatement("SELECT nome FROM pessoa WHERE id_user = ?");
             ps.setString(1, id);
             rs = ps.executeQuery();
-			while(rs.next()){
-				pessoa = new Pessoa();
-	            pessoa.setNome(rs.getString("nome"));
-			}
+            while (rs.next()) {
+                pessoa = new Pessoa();
+                pessoa.setNome(rs.getString("nome"));
+            }
             return pessoa;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro no MysqlPessoaDao.selectAllPessoa \n " + ex.getMessage());
@@ -144,9 +142,45 @@ public class MysqlPessoaDao implements PessoaDao {
         }
     }
 
-	@Override
-	public List<Pessoa> selectAllPessoa() {
-		Connection conn = null;
+    public Pessoa verificarAcesso(String user, String pass) {
+         ResultSet rs = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+            conn = MysqlDAOFactory.ConnectDb();
+            ps = conn.prepareStatement("SELECT nome, tipo_usuario FROM pessoa WHERE nome = ? AND senha = ?");
+            ps.setString(1, user);
+            ps.setString(2, pass);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                pessoa = new Pessoa();
+                pessoa.setNome(rs.getString("nome"));
+                pessoa.setTipo(rs.getString("tipo_usuario"));
+            }
+            return pessoa;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro no MysqlPessoaDao.selectAllPessoa \n " + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    @Override
+    public List<Pessoa> selectAllPessoa() {
+        Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         Pessoa pessoa = null;
@@ -158,6 +192,7 @@ public class MysqlPessoaDao implements PessoaDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
+                pessoa = new Pessoa();
                 String id = rs.getString("id_user");
                 pessoa.setNome(rs.getString("nome"));
                 pessoa.setSenha(rs.getString("senha"));
@@ -183,6 +218,5 @@ public class MysqlPessoaDao implements PessoaDao {
         }
         return lista;
     }
-
 
 }

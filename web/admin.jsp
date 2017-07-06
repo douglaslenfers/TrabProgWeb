@@ -3,7 +3,11 @@
     Created on : Jul 5, 2017, 8:25:07 AM
     Author     : Douglas
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="br.com.squirtlesquad.obj.Pessoa"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -96,23 +100,25 @@
                                 </div>
                                 <div class="container"> 
                                     <div class="col-md-12">
+                                        
                                         <table id="myTable" class="table table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>Usuário</th>
-                                                    <th>Email</th>
                                                     <th>Perfil</th>
                                                     <th>Senha</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <c:forEach var="login" items="${listaLogins}">
+
+                                            <c:forEach var="p" items="${listaPessoa}">
+                                                
                                                 <tr>
-                                                    <td>${login.nome}</td>
-                                                    <td>${login.email}</td>
-                                                    <td>${login.tipo}</td>
-                                                    <td>${login.senha}</td>
+                                                    
+                                                    <td>${p.nome}</td>
+                                                    <td>${p.tipo}</td>
+                                                    <td>${p.senha}</td>
                                                     <td class="text-center">
                                                         <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadUsuario(${login.id})">
                                                             <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -160,7 +166,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">Cadastrar Usuário</h4>
                     </div>
-                    <form id="formAdmin">
+                    <form id="formAdmin" method="post" action="${pageContext.request.contextPath}/CadastrarUsuario" role = "form">
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">

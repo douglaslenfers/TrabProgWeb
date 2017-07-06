@@ -61,12 +61,5 @@ $(document).ready(function() {
         min: jQuery.validator.format("Insira um valor maior ou igual a {0}.")
     });
 
-    $("#formAdmin").submit(function() {
-        event.preventDefault();
-        if ($("#formAdmin").valid()) {
-            alert("Sucesso");
-        } else {
-            return;
-        }
-    });
+
 });

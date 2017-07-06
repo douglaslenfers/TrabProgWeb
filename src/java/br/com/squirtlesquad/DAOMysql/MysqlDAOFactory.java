@@ -17,7 +17,10 @@ public class MysqlDAOFactory extends DAOFactory {
 
     public static Connection ConnectDb() {
         try {
-            cone = DriverManager.getConnection("jdbc:mysql://localhost/squirtle_squad","root","toor");
+            String driverName = "com.mysql.jdbc.Driver";                        
+ 
+            Class.forName(driverName);
+            cone = DriverManager.getConnection("jdbc:mysql://localhost:3306/squirtle_squad","root","toor");
             //JOptionPane.showMessageDialog(null, "CONNECTION ESTABLISHED biblioteca");
             return cone;
         } catch (Exception e) {

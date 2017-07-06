@@ -32,25 +32,12 @@ public class Main {
 
 		Produto p = new Produto();
 		Pessoa pe = new Pessoa();
-		p.setId(1);
-		pe.setId("1");
-		p.setValorUnidade(10);
-		p.setPromocao(0);
-
-
-		DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-		Date data = new Date(System.currentTimeMillis());
-
-		Venda v = new Venda();
-
 		
-		MysqlVendaDao VendaDao = new MysqlVendaDao();
+                
+                MysqlPessoaDao pee = new MysqlPessoaDao();
+                System.out.println(pee.selectPessoa("1"));
 		
-		v.setDataVenda();
-		v.addProduto(p);
-		v.setPessoa(pe);
-		VendaDao.insertVenda(v);
-		
+                
 		
 		
 

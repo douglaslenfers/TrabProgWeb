@@ -5,17 +5,11 @@
  */
 package br.com.squirtlesquad.main;
 
-import br.com.squirtlesquad.DAOMysql.MysqlDAOFactory;
 import br.com.squirtlesquad.DAOMysql.MysqlPessoaDao;
 import br.com.squirtlesquad.obj.Pessoa;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Pizani
  */
-@WebServlet("/ValidarAcesso")
-public class ValidarAcesso extends HttpServlet {
+@WebServlet("/CadastrarUsuario")
+public class CadastrarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
 	protected void doGet(HttpServletRequest request,
@@ -38,25 +32,20 @@ public class ValidarAcesso extends HttpServlet {
  
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		String user = request.getParameter("user");
-                String pass = request.getParameter("pass");
-                MysqlPessoaDao pessoaDao = new MysqlPessoaDao();
-                List<Pessoa> listaPessoa = new ArrayList<>();
                 Pessoa p = new Pessoa();
-                p = pessoaDao.verificarAcesso(user, pass);
-                String destino = "Caixa";
-                if(p.getTipo().equals("Caixa")){
-                    destino = "caixa.jsp";
-                }else if(p.getTipo().equals("gerente")){
-                     destino = "gerente.jsp";
-                }if(p.getTipo().equals("admin")){
-                     destino = "admin.jsp";
-
+                List<Pessoa> listaPessoa = new ArrayList<>();
+		p.setNome(request.getParameter("nome"));
+                p.setSenha(request.getParameter("senha"));
+                p.setTipo(request.getParameter("perfil"));
                 
-   
-                }
-                request.setAttribute("listaPessoa", pessoaDao.selectAllPessoa());
+                
+                MysqlPessoaDao pessoaDao = new MysqlPessoaDao();
+                
+                pessoaDao.insertPessoa(p);
+                
+                listaPessoa = pessoaDao.selectAllPessoa();
+                request.setAttribute("listaPessoa", listaPessoa);
+                String destino = "admin.jsp";
  
 		//O sistema é direcionado para a página 
 		//sucesso.jsp Se tudo ocorreu bem
