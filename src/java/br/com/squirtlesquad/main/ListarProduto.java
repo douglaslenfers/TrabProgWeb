@@ -21,7 +21,7 @@ public class ListarProduto extends HttpServlet {
         System.out.println(request.getParameter("action"));
 
         MysqlProdutoDao produtoDao = new MysqlProdutoDao();
-        request.setAttribute("listaProduto", produtoDao.selectAllProduto());
+        request.setAttribute("listaProdutos", produtoDao.selectAllProduto());
         String destino = "gerente.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(destino);
         rd.forward(request, response);

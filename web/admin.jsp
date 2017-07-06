@@ -96,7 +96,6 @@
                                 </div>
                                 <div class="container"> 
                                     <div class="col-md-12">
-
                                         <table id="myTable" class="table table-hover">
                                             <thead>
                                                 <tr>
@@ -107,9 +106,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-
                                                 <c:forEach var="p" items="${listaPessoa}">
-
                                                     <tr>
                                                         <td>${p.nome}</td>
                                                         <td>${p.tipo}</td>

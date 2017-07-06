@@ -1,3 +1,8 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="br.com.squirtlesquad.obj.Pessoa"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -117,7 +122,7 @@
                             <button class="btn btn-primary btn-md btn-link" style="font-size:24px; color: #428bca; margin-top: 10px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <span class="glyphicon glyphicon-bell"></span>
                             </button>
-                            <span id="notify_count" class="badge badge-notify">3</span>
+                            <span id="notify_cdount" class="badge badge-notify">3</span>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                 <c:forEach var="prodPraVencer" items="${listaProdutosPraVencer}">
                                     <li onclick="produtosVencidos();">
@@ -180,31 +185,30 @@
                                                                                 <th>% Promoção</th>
                                                                                 <th>Qtd mínima para desconto</th>
                                                                                 <th></th>
-
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                        <c:forEach var="prod" items="${listaProdutos}">
-                                                                            <tr>
-                                                                                <td><img src="imagens/${prod.nome}.png" class="img-responsive miniatureImage" ></td>
-                                                                                <td>${prod.nome}</td>
-                                                                                <td>${prod.valorUnidade}</td>
-                                                                                <td>${prod.quantidade}</td>
-                                                                                <td>${prod.unidadeMedida}</td>
-                                                                                <td>${prod.dataValidade}</td>
-                                                                                <td>${prod.promocao}</td>
-                                                                                <td>${prod.porcentagemPromocao}</td>
-                                                                                <td>${prod.quantidadeMinDesconto}</td>
-                                                                                <td class="text-center">
-                                                                                    <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadProduto(${prod.id})">
-                                                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                                                    </button>
-                                                                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="excluirLin(${prod.id})">
-                                                                                        <i class="fa fa-times"></i>
-                                                                                    </button>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </c:forEach>
+                                                                            <c:forEach var="prod" items="${listaProdutos}">
+                                                                                <tr>
+                                                                                    <td><img src="imagens/${prod.nome}.png" class="img-responsive miniatureImage" ></td>
+                                                                                    <td>${prod.nome}</td>
+                                                                                    <td>${prod.valorUnidade}</td>
+                                                                                    <td>${prod.quantidade}</td>
+                                                                                    <td>${prod.unidadeMedida}</td>
+                                                                                    <td>${prod.dataValidade}</td>
+                                                                                    <td>${prod.promocao}</td>
+                                                                                    <td>${prod.porcentagemPromocao}</td>
+                                                                                    <td>${prod.quantidadeMinDesconto}</td>
+                                                                                    <td class="text-center">
+                                                                                        <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadProduto(${prod.id})">
+                                                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                                        </button>
+                                                                                        <button href="ExcluirProduto?action=delete&id=${prod.id}" type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="excluirLin(${prod.id})">
+                                                                                            <i class="fa fa-times"></i>
+                                                                                        </button>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </c:forEach>
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -230,16 +234,16 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                <c:forEach var="prodVenc" items="${listaProdutosVencidos}">
-                                                                    <tr>
-                                                                        <td><img src="imagens/${prodVenc.nome}.png" class="img-responsive miniatureImage" ></td>
-                                                                        <td>${prodVenc.nome}</td>
-                                                                        <td>${prodVenc.valorUnidade}</td>
-                                                                        <td>${prodVenc.quantidade}</td>
-                                                                        <td>${prodVenc.unidadeMedida}</td>
-                                                                        <td>${prodVenc.dataValidade}</td>
-                                                                    </tr>
-                                                                </c:forEach>
+                                                                    <c:forEach var="prodVenc" items="${listaProdutos}">
+                                                                        <tr>
+                                                                            <td><img src="imagens/${prodVenc.nome}.png" class="img-responsive miniatureImage" ></td>
+                                                                            <td>${prodVenc.nome}</td>
+                                                                            <td>${prodVenc.valorUnidade}</td>
+                                                                            <td>${prodVenc.quantidade}</td>
+                                                                            <td>${prodVenc.unidadeMedida}</td>
+                                                                            <td>${prodVenc.dataValidade}</td>
+                                                                        </tr>
+                                                                    </c:forEach>
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -262,15 +266,15 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                <c:forEach var="prodEstoq" items="${listaProdutosEstoque}">
-                                                                    <tr>
-                                                                        <td><img src="imagens/${prodEstoq.nome}.png" class="img-responsive miniatureImage" ></td>
-                                                                        <td>${prodEstoq.nome}</td>
-                                                                        <td>${prodEstoq.quantidade}</td>
-                                                                        <td>1000</td>
-                                                                        <td>10</td>
-                                                                    </tr>
-                                                                </c:forEach>
+                                                                    <c:forEach var="prodEstoq" items="${listaProdutos}">
+                                                                        <tr>
+                                                                            <td><img src="imagens/${prodEstoq.nome}.png" class="img-responsive miniatureImage" ></td>
+                                                                            <td>${prodEstoq.nome}</td>
+                                                                            <td>${prodEstoq.quantidade}</td>
+                                                                            <td>1000</td>
+                                                                            <td>10</td>
+                                                                        </tr>
+                                                                    </c:forEach>
                                                                 </tbody>
                                                             </table>
                                                         </div>
