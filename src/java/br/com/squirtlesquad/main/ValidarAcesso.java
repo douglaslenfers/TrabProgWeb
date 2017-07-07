@@ -43,7 +43,9 @@ public class ValidarAcesso extends HttpServlet {
              request.setAttribute("listaProduto", produtoDao.selectAllProduto());
 
         } else if (p.getTipo().equals("gerente")) {
+            MysqlProdutoDao produtoDao = new MysqlProdutoDao();
             destino = "gerente.jsp";
+            request.setAttribute("listaProdutos", produtoDao.selectAllProduto());
         }
         if (p.getTipo().equals("admin")) {
             destino = "admin.jsp";

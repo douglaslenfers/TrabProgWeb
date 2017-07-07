@@ -203,9 +203,9 @@
                                                                                         <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadProduto(${prod.id})">
                                                                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                                                                         </button>
-                                                                                        <button href="ExcluirProduto?action=delete&id=${prod.id}" type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="excluirLin(${prod.id})">
+                                                                                        <a href="ExcluirProduto?action=delete&id=${prod.id}" name = "Excluir" type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir">
                                                                                             <i class="fa fa-times"></i>
-                                                                                        </button>
+                                                                                        </a>
                                                                                     </td>
                                                                                 </tr>
                                                                             </c:forEach>
@@ -217,70 +217,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div role="tabpanel" class="tab-pane" id="prod_vencidos">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <h2 style="text-align: center;">Produtos Vencidos</h2>
-                                                            <table id="myTable" class="table table-hover">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Imagem</th>
-                                                                        <th>Nome</th>
-                                                                        <th>Valor</th>
-                                                                        <th>Quantidade por unidade</th>
-                                                                        <th>Unidade de Medida</th>
-                                                                        <th>Validade</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <c:forEach var="prodVenc" items="${listaProdutos}">
-                                                                        <tr>
-                                                                            <td><img src="imagens/${prodVenc.nome}.png" class="img-responsive miniatureImage" ></td>
-                                                                            <td>${prodVenc.nome}</td>
-                                                                            <td>${prodVenc.valorUnidade}</td>
-                                                                            <td>${prodVenc.quantidade}</td>
-                                                                            <td>${prodVenc.unidadeMedida}</td>
-                                                                            <td>${prodVenc.dataValidade}</td>
-                                                                        </tr>
-                                                                    </c:forEach>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane" id="prod_estoque">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <h2 style="text-align: center;">Estoque Produtos</h2>
-                                                            <table id="myTable" class="table table-hover">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Imagem</th>
-                                                                        <th>Nome</th>
-                                                                        <th>Quantidade em estoque</th>
-                                                                        <th>Quantidade máxima</th>
-                                                                        <th>Quantidade mínima</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <c:forEach var="prodEstoq" items="${listaProdutos}">
-                                                                        <tr>
-                                                                            <td><img src="imagens/${prodEstoq.nome}.png" class="img-responsive miniatureImage" ></td>
-                                                                            <td>${prodEstoq.nome}</td>
-                                                                            <td>${prodEstoq.quantidade}</td>
-                                                                            <td>1000</td>
-                                                                            <td>10</td>
-                                                                        </tr>
-                                                                    </c:forEach>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -336,184 +273,6 @@
                 </div>
             </div>
         </footer>
-        <script type="text/javascript">
-            // Create the chart
-            Highcharts.chart('container2', {
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: 'Vendas Realizadas'
-                },
-                subtitle: {
-                    text: 'Clique nas colunas para navegar no grafico'
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Total percent market share'
-                    }
-
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: 'R$ {point.y:.1f}'
-                        }
-                    }
-                },
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    //pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-                },
-
-                series: [{
-                        name: 'Brands',
-                        colorByPoint: true,
-                        data: [{
-                                name: 'Janeiro',
-                                y: 56.33,
-                                drilldown: 'Janeiro'
-                            }]
-                    }],
-                drilldown: {
-                    series: [{
-                            name: 'Janeiro',
-                            id: 'Janeiro',
-                            data: [
-                                [
-                                    '1',
-                                    24.13
-                                ],
-                                [
-                                    '2',
-                                    17.2
-                                ],
-                                [
-                                    '3',
-                                    8.11
-                                ],
-                                [
-                                    '4',
-                                    5.33
-                                ],
-                                [
-                                    '5',
-                                    1.06
-                                ],
-                                [
-                                    '6',
-                                    0.5
-                                ],
-                                [
-                                    '7',
-                                    5.33
-                                ],
-                                [
-                                    '8',
-                                    0.5
-                                ],
-                                [
-                                    '9',
-                                    5.33
-                                ],
-                                [
-                                    '10',
-                                    0.5
-                                ],
-                                [
-                                    '11',
-                                    0.5
-                                ],
-                                [
-                                    '12',
-                                    9.33
-                                ],
-                                [
-                                    '13',
-                                    5.33
-                                ],
-                                [
-                                    '14',
-                                    0.5
-                                ],
-                                [
-                                    '15',
-                                    200
-                                ],
-                                [
-                                    '16',
-                                    0.5
-                                ],
-                                [
-                                    '17',
-                                    0.5
-                                ],
-                                [
-                                    '18',
-                                    0.5
-                                ],
-                                [
-                                    '19',
-                                    5.33
-                                ],
-                                [
-                                    '20',
-                                    0.5
-                                ],
-                                [
-                                    '21',
-                                    0.5
-                                ],
-                                [
-                                    '22',
-                                    0.5
-                                ],
-                                [
-                                    '23',
-                                    0.5
-                                ],
-                                [
-                                    '24',
-                                    0.5
-                                ],
-                                [
-                                    '25',
-                                    0.5
-                                ],
-                                [
-                                    '26',
-                                    0.5
-                                ],
-                                [
-                                    '27',
-                                    0.5
-                                ],
-                                [
-                                    '28',
-                                    0.5
-                                ],
-                                [
-                                    '29',
-                                    0.5
-                                ],
-                                [
-                                    '30',
-                                    0.5
-                                ],
-                            ]
-                        }]
-                }
-            });
-        </script>
 
         <!-- Modal -->
         <div class="modal fade" id="cadProduto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
@@ -523,7 +282,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">Cadastrar Produto</h4>
                     </div>
-                    <form id="formGerente">
+                    <form id="formGerente" method="post" action="${pageContext.request.contextPath}/InserirProduto" role = "form"> 
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -563,7 +322,7 @@
                                     <input id="qtd_estoque" name="qtd_estoque" min="0" type="number" class="form-control" />
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="qtd_min_estoque">Quantidade em estoque:</label>
+                                    <label for="qtd_min_estoque">Quantidade min para desconto:</label>
                                     <input id="qtd_min_estoque" name="qtd_min_estoque" min="0" type="number" class="form-control" />
                                 </div>
                             </div>
@@ -571,8 +330,8 @@
                                 <div class="col-md-4">
                                     <label for="promocao">Promoção:</label>
                                     <select id="promocao" name="promocao" class="form-control" onchange="exibir_ocultar()">
-                                        <option>Não</option>
-                                        <option>Sim</option>
+                                        <option>N</option>
+                                        <option>S</option>
                                     </select>
                                 </div>
                             </div>

@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Pizani/Documents/NetBeansProjects/Programação%20Web/src/java/br/com/squirtlesquad/main/InserirProduto.java</file>
+            <file>file:/C:/Users/Pizani/Documents/NetBeansProjects/Programação%20Web/web/admin.jsp</file>
+            <file>file:/C:/Users/Pizani/Documents/NetBeansProjects/Programação%20Web/web/gerente.jsp</file>
+            <file>file:/C:/Users/Pizani/Documents/NetBeansProjects/Programação%20Web/src/java/br/com/squirtlesquad/DAOMysql/MysqlProdutoDao.java</file>
+            <file>file:/C:/Users/Pizani/Documents/NetBeansProjects/Programação%20Web/src/java/br/com/squirtlesquad/main/ExcluirProduto.java</file>
+            <file>file:/C:/Users/Pizani/Documents/NetBeansProjects/Programação%20Web/src/java/br/com/squirtlesquad/obj/Produto.java</file>
+        </group>
     </open-files>
 </project-private>

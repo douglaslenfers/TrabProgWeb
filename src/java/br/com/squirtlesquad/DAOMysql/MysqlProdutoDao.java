@@ -31,18 +31,17 @@ public class MysqlProdutoDao implements ProdutoDao {
         try {
             conn = MysqlDAOFactory.ConnectDb();
             ps = conn.prepareStatement(
-                    "INSERT INTO produto (idproduto, nome, descricao, quantidade, valor_unidade, validade, imagem, is_promocao, porcentagem_promocao, qtd_minima_desconto, unidade_medida) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            ps.setInt(1, produto.getId());
-            ps.setString(2, produto.getNome());
-            ps.setString(3, produto.getDescricao());
-            ps.setInt(4, produto.getQuantidade());
-            ps.setDouble(5, produto.getValorUnidade());
-            ps.setDate(6, new java.sql.Date(produto.getDataValidade().getTime()));
-            ps.setString(7, produto.getCaminhoImagem());
-            ps.setInt(8, produto.getPromocao());
-            ps.setDouble(9, produto.getPorcentagemPromocao());
-            ps.setInt(10, produto.getQuantidadeMinDesconto());
-            ps.setString(11, produto.getUnidadeMedida());
+                    "INSERT INTO produto (nome, descricao, quantidade, valor_unidade, validade, imagem, is_promocao, porcentagem_promocao, qtd_minima_desconto, unidade_medida) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            ps.setString(1, produto.getNome());
+            ps.setString(2, produto.getDescricao());
+            ps.setInt(3, produto.getQuantidade());
+            ps.setDouble(4, produto.getValorUnidade());
+            ps.setDate(5, new java.sql.Date(produto.getDataValidade().getTime()));
+            ps.setString(6, produto.getCaminhoImagem());
+            ps.setInt(7, produto.getPromocao());
+            ps.setDouble(8, produto.getPorcentagemPromocao());
+            ps.setInt(9, produto.getQuantidadeMinDesconto());
+            ps.setString(10, produto.getUnidadeMedida());
 
             ps.execute();
         } catch (SQLException ex) {

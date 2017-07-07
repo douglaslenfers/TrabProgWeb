@@ -22,33 +22,7 @@ public class InserirProduto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(request.getParameter("id"));
-        System.out.println(request.getParameter("action"));
-
-        MysqlProdutoDao produtoDao = new MysqlProdutoDao();
-        Produto prod = new Produto();
-        prod.setNome(request.getParameter("nome"));
-        prod.setDescricao(request.getParameter("descricao"));
-        prod.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
-        prod.setUnidadeMedida(request.getParameter("unidadeMedida"));
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
-        Date date = new Date();
-        try {
-            date = (Date) formatter.parse(request.getParameter("dataValidade"));
-        } catch (ParseException ex) {
-            System.out.println("Erro ao converter data");
-        }
-        prod.setDataValidade(date);
-        prod.setPromocao(Integer.parseInt(request.getParameter("promocao")));
-        prod.setPorcentagemPromocao(Double.parseDouble(request.getParameter("porcentagemPromocao")));
-        prod.setQuantidadeMinDesconto(Integer.parseInt(request.getParameter("quantidadeMinDesconto")));
-        prod.setCaminhoImagem(request.getParameter("caminhoImagem"));
-        prod.setValorUnidade(Double.parseDouble(request.getParameter("valorUnidade")));
-        produtoDao.insertProduto(prod);
-        request.setAttribute("listaProdutos", produtoDao.selectAllProduto());
-        String destino = "gerente.jsp";
-        RequestDispatcher rd = request.getRequestDispatcher(destino);
-        rd.forward(request, response);
+        
 
     }
 
@@ -56,12 +30,41 @@ public class InserirProduto extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println(request.getParameter("nome"));
+        System.out.println(request.getParameter("id"));
         System.out.println(request.getParameter("action"));
 
+        MysqlProdutoDao produtoDao = new MysqlProdutoDao();
+        Produto prod = new Produto();
+        prod.setNome(request.getParameter("nome_produto"));
+        //prod.setDescricao(request.getParameter("descricao"));
+        prod.setQuantidade(Integer.parseInt(request.getParameter("qtd_produto")));
+        prod.setUnidadeMedida(request.getParameter("unMedida_produto"));
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+        Date date = new Date();
+        try {
+            date = (Date) formatter.parse(request.getParameter("validade"));
+        } catch (ParseException ex) {
+            System.out.println("Erro ao converter data");
+        }
+        prod.setDataValidade(date);
+        if(request.getParameter("promocao").equalsIgnoreCase("N")){
+            prod.setPromocao(0);
+        }else{
+            prod.setPromocao(1);
+            prod.setPorcentagemPromocao(Double.parseDouble(request.getParameter("percent_promocao")));
+        }
+        
+        
+        prod.setQuantidadeMinDesconto(Integer.parseInt(request.getParameter("qtd_min_estoque")));
+        prod.setCaminhoImagem(request.getParameter("image_produto"));
+        prod.setValorUnidade(Double.parseDouble(request.getParameter("valor")));
+        produtoDao.insertProduto(prod);
+        request.setAttribute("listaProdutos", 
+                produtoDao.selectAllProduto());
         String destino = "gerente.jsp";
-
         RequestDispatcher rd = request.getRequestDispatcher(destino);
         rd.forward(request, response);
+
+       
     }
 }

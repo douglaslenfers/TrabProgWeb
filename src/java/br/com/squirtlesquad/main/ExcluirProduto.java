@@ -17,9 +17,12 @@ public class ExcluirProduto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-
+        String action = request.getParameter("action");
         MysqlProdutoDao produtoDao = new MysqlProdutoDao();
-        produtoDao.removeProduto(request.getParameter("id"));
+        
+        if (action.equalsIgnoreCase("delete")){
+            produtoDao.removeProduto(request.getParameter("id"));
+        }
         request.setAttribute("listaProdutos", produtoDao.selectAllProduto());
         String destino = "gerente.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(destino);
