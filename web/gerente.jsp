@@ -177,6 +177,7 @@
                                                                             <tr>
                                                                                 <th>Imagem</th>
                                                                                 <th>Nome</th>
+                                                                                <th>Descrição</th>
                                                                                 <th>Valor</th>
                                                                                 <th>Quantidade por unidade</th>
                                                                                 <th>Unidade de Medida</th>
@@ -192,6 +193,7 @@
                                                                                 <tr>
                                                                                     <td><img src="imagens/${prod.nome}.png" class="img-responsive miniatureImage" ></td>
                                                                                     <td>${prod.nome}</td>
+                                                                                    <td>${prod.descricao}</td>
                                                                                     <td>${prod.valorUnidade}</td>
                                                                                     <td>${prod.quantidade}</td>
                                                                                     <td>${prod.unidadeMedida}</td>
@@ -288,6 +290,12 @@
                                 <div class="col-md-12">
                                     <label for="nome_produto">Nome produto:</label>
                                     <input id="nome_produto" name="nome_produto" placeholder="ex: Maçã" type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="descricao">Descrição:</label>
+                                    <input id="descricao" name="descricao" placeholder="ex: Sabor de RS" type="text" class="form-control" />
                                 </div>
                             </div>
                             <div class="row">

@@ -36,7 +36,7 @@ public class InserirProduto extends HttpServlet {
         MysqlProdutoDao produtoDao = new MysqlProdutoDao();
         Produto prod = new Produto();
         prod.setNome(request.getParameter("nome_produto"));
-        //prod.setDescricao(request.getParameter("descricao"));
+        prod.setDescricao(request.getParameter("descricao"));
         prod.setQuantidade(Integer.parseInt(request.getParameter("qtd_produto")));
         prod.setUnidadeMedida(request.getParameter("unMedida_produto"));
         DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
