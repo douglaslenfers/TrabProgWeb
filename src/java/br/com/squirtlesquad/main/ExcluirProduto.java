@@ -20,7 +20,7 @@ public class ExcluirProduto extends HttpServlet {
 
         MysqlProdutoDao produtoDao = new MysqlProdutoDao();
         produtoDao.removeProduto(request.getParameter("id"));
-        request.setAttribute("listaProduto", produtoDao.selectAllProduto());
+        request.setAttribute("listaProdutos", produtoDao.selectAllProduto());
         String destino = "gerente.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(destino);
         rd.forward(request, response);

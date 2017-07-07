@@ -45,7 +45,7 @@ public class AtualizaProduto extends HttpServlet {
         prod.setCaminhoImagem(request.getParameter("caminhoImagem"));
         prod.setValorUnidade(Double.parseDouble(request.getParameter("valorUnidade")));
         produtoDao.updateProduto(prod, request.getParameter("id"));
-        request.setAttribute("listaProduto", produtoDao.selectAllProduto());
+        request.setAttribute("listaProdutos", produtoDao.selectAllProduto());
         String destino = "gerente.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(destino);
         rd.forward(request, response);
