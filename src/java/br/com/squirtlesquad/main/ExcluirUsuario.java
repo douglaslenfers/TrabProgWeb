@@ -1,6 +1,7 @@
 package br.com.squirtlesquad.main;
 
 import br.com.squirtlesquad.DAOMysql.MysqlPessoaDao;
+import br.com.squirtlesquad.obj.Pessoa;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,11 +18,20 @@ public class ExcluirUsuario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(request.getParameter("id"));
-        System.out.println(request.getParameter("action"));
 
+        String action = request.getParameter("action");
         MysqlPessoaDao pessoaDao = new MysqlPessoaDao();
-        pessoaDao.removePessoa(request.getParameter("id"));
+        if (action.equalsIgnoreCase("delete")){
+         pessoaDao.removePessoa(request.getParameter("id"));
+         
+        }else if (action.equalsIgnoreCase("edit")){
+   
+            request.setAttribute("editPessoa", pessoaDao.selectPessoa(request.getParameter("id")));
+        }
+        
+        
+        
+        
         request.setAttribute("listaPessoa", pessoaDao.selectAllPessoa());
         String destino = "admin.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(destino);
@@ -33,20 +43,13 @@ public class ExcluirUsuario extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
 
-        MysqlPessoaDao pessoaDao = new MysqlPessoaDao();
 
-        String action = request.getParameter("action");
-        // if (action.equalsIgnoreCase("delete")){
-        System.out.println(request.getParameter("nome"));
-        System.out.println(request.getParameter("action"));
-        // }
 
-        String destino = "admin.jsp";
 
         //O sistema é direcionado para a página 
         //sucesso.jsp Se tudo ocorreu bem
         //erro.jsp se houver algum problema.
-        RequestDispatcher rd = request.getRequestDispatcher(destino);
-        rd.forward(request, response);
+        //RequestDispatcher rd = request.getRequestDispatcher(destino);
+       // rd.forward(request, response);
     }
 }

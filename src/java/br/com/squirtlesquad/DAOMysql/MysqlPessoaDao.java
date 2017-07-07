@@ -110,12 +110,15 @@ public class MysqlPessoaDao implements PessoaDao {
 
         try {
             conn = MysqlDAOFactory.ConnectDb();
-            ps = conn.prepareStatement("SELECT nome FROM pessoa WHERE id_user = ?");
+            ps = conn.prepareStatement("SELECT * FROM pessoa WHERE id_user = ?");
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                pessoa = new Pessoa();
-                pessoa.setNome(rs.getString("nome"));
+                    pessoa = new Pessoa();
+	            pessoa.setNome(rs.getString("nome"));
+	            pessoa.setId(rs.getString("id_user"));
+	            pessoa.setTipo(rs.getString("tipo_usuario"));
+	            pessoa.setSenha(rs.getString("senha"));
             }
             return pessoa;
         } catch (SQLException ex) {

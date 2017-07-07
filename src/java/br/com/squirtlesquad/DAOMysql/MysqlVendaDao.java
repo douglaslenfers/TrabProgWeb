@@ -11,6 +11,8 @@ import br.com.squirtlesquad.DAOInterface.VendaDao;
 import br.com.squirtlesquad.obj.Pessoa;
 import br.com.squirtlesquad.obj.Produto;
 import br.com.squirtlesquad.obj.Venda;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MysqlVendaDao implements VendaDao {
 
@@ -22,8 +24,11 @@ public class MysqlVendaDao implements VendaDao {
         conn = MysqlDAOFactory.ConnectDb();
     }
 
+    
+    
+    
     @Override
-    public void insertVenda(Venda venda) {
+   public void insertVenda(Venda venda) {
         Connection conn = null;
         PreparedStatement ps = null;
         //MysqlProdutoDao produtoDao = new MysqlProdutoDao();
@@ -33,19 +38,18 @@ public class MysqlVendaDao implements VendaDao {
                 System.out.println(p.getId());
                 conn = MysqlDAOFactory.ConnectDb();
                 ps = conn.prepareStatement(
-                        "INSERT INTO venda (idvenda, idproduto, idfuncionario, dtvenda, valor) VALUES (?, ?, ?, ?, ?)");
+                        "INSERT INTO venda (idvenda, idproduto, dtvenda, valor, quantidade) VALUES (?, ?, ?, ?, ?)");
                 ps.setInt(1, venda.getIdVenda());
                 ps.setInt(2, p.getId());
-                ps.setString(3, venda.getPessoa().getId());
-                ps.setDate(4, new java.sql.Date(venda.getDataVenda().getTime()));
+                ps.setDate(3, new java.sql.Date(venda.getDataVenda().getTime()));
+                ps.setInt(5, venda.getQuantidade());
 
                 if (p.getPromocao() == 1) {
                     double valorPago = p.getPorcentagemPromocao() * p.getValorUnidade();
-                    ps.setDouble(5, valorPago);
+                    ps.setDouble(4, valorPago);
                 } else {
-                    ps.setDouble(5, p.getValorUnidade());
+                    ps.setDouble(4, p.getValorUnidade());
                 }
-
                 ps.execute();
             }
 
@@ -140,5 +144,39 @@ public class MysqlVendaDao implements VendaDao {
             }
         }
     }
+    public int selectUltimaVenda(String id) {
+        ResultSet rs = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        int idVenda = 0;
+        try {
+            conn = MysqlDAOFactory.ConnectDb();
+            ps = conn.prepareStatement(
+                    "SELECT idvenda FROM venda WHERE idvenda = (SELECT max(idvenda) FROM venda) ORDER BY idvenda DESC LIMIT 1");
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                idVenda = rs.getInt("idvenda");
+            }
+            return idVenda;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro no MysqlVendaDao.selectVenda \n " + ex.getMessage());
+            return idVenda;
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+    }
+    
 
 }

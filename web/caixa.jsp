@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <header>
@@ -106,23 +107,27 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="produtos">
                                 <div class="container " style="padding-top: 30px"> 
-                                    <div class="col-md-8 form-inline" >
-                                        <div class="form-group">
-                                            <label for="produto">Produto:</label>
-                                            <select id="produto" class="form-control select2" style="width: 250px">
-                                                <option value=""></option>
-                                                <option value="Maçã">Maçã</option>
-                                                <option value="Uva">Uva</option>
-                                            </select>    
+                                    <form id="formVenda" method="post" action="${pageContext.request.contextPath}/AdicionarVenda" role = "form">
+                                        <div class="col-md-8 form-inline">
+                                            <div class="form-group">
+                                                <label for="produto">Produto:</label>
+                                                <select name = "produto" id="produto" class="form-control select2" style="width: 250px">
+
+                                                    <c:forEach var="p" items="${listaProduto}">
+                                                        <option value=${p.id}>${p.nome}</option>
+                                                    </c:forEach>
+
+                                                </select>    
+                                            </div>
+                                            <label for="example-number-input" class="col-2 col-form-label">Quantidade</label>
+                                            <input class="form-control" type="number" min="1" name= "quantidade" id="quantidade" style="width: 70px">
                                         </div>
-                                        <label for="example-number-input" class="col-2 col-form-label">Quantidade</label>
-                                        <input class="form-control" type="number" min="1" id="quantidade" style="width: 70px">
-                                    </div>
-                                    <div class="col-md-4" align="right">
-                                        <div class="form-group">
-                                            <button class="btn btn-primary" onclick="adicionarProduto();">Adicionar</button>
+                                        <div class="col-md-4" align="right">
+                                            <div class="form-group">
+                                                <button class="btn btn-primary" type="submit">Adicionar</button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                                 <div class="container"> 
                                     <div class="col-md-12">
@@ -134,30 +139,27 @@
                                                     <th>Quantidade</th>
                                                     <th>Valor por Unidade</th>
                                                     <th>Valor</th>
+                                                    <th>% Desconto</th>
                                                     <th>Desconto</th>
-                                                    <th>Valor total</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                            <c:forEach var="item" items="${listaCompra}">
-                                                <tr id="${item.nome}_${item.quantidade}">
-                                                    <td><img src="imagens/${item.nome}.png" class="img-responsive miniatureImage"></td>
-                                                    <td>${item.nome}</td>
-                                                    <td>${item.quantidade}</td>
-                                                    <td>${item.valorUnidade}</td>
-                                                    <td>${item.valorUnidade * item.quantidade}</td>
-                                                    <td>${item.porcentagemPromocao}</td>
-                                                    <td>${item.valorUnidade * item.porcentagemPromocao}</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showAlterarQtd(${item.nome}, ${item.quantidade})">
-                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                        </button>
-                                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="excluirLin(${item.nome}_${item.quantidade})">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                            <tbody >
+                                                <c:forEach var="item" items="${lista}">
+                                                    <tr id="${item.nome}_${item.quantidade}">
+                                                        <td><img src="imagens/${item.nome}.png" class="img-responsive miniatureImage"></td>
+                                                        <td>${item.nome}</td>
+                                                        <td>${item.quantidadeVendida}</td>
+                                                        <td>${item.valorUnidade}</td>
+                                                        <td>${item.valorUnidade * item.quantidadeVendida}</td>
+                                                        <td>${item.porcentagemPromocao}</td>
+                                                        <td>${item.valorUnidade * item.quantidadeVendida * item.porcentagemPromocao}</td>
+                                                        <td class="text-center">
+                                                            <a href="AdicionarVenda?action=delete&id=${item.id}" type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir">
+                                                                <i class="fa fa-times"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                             </c:forEach>
                                         </table>
@@ -180,8 +182,10 @@
                         </div>
                         <div class="col-md-6" align="right">
                             <div class="form-group">
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#cadastrousuario" onclick="limparCompras()">Limpar</button>
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#cadastrousuario" onclick="finalizarCompra()">Finalizar Compra</button>
+                                
+                                    <a href="AdicionarVenda?action=limpar" name = "Excluir" type="button" class="btn btn-danger" data-toggle="modal">Limpar</a>
+                                    <a href="AdicionarVenda?action=finalizar" tname = "Excluir" type="button" class="btn btn-primary" data-toggle="modal">Finalizar Compra</a>
+                                
                             </div>
                         </div>
                     </div>

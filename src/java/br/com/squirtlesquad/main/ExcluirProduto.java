@@ -17,8 +17,6 @@ public class ExcluirProduto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(request.getParameter("id"));
-        System.out.println(request.getParameter("action"));
 
         MysqlProdutoDao produtoDao = new MysqlProdutoDao();
         produtoDao.removeProduto(request.getParameter("id"));

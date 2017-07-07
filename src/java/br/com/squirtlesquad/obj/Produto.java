@@ -1,6 +1,7 @@
 package br.com.squirtlesquad.obj;
 
 import java.util.Date;
+import java.util.List;
 
 public class Produto {
 
@@ -15,6 +16,29 @@ public class Produto {
     private int quantidadeMinDesconto;
     private String caminhoImagem;
     private double valorUnidade;
+    private int quantidadeVendida;
+    private double valorTotal;
+
+    
+    public double getValortotal() {
+        return valorTotal;
+    }
+
+    public void setValortotal() {
+        if(this.quantidadeVendida >= this.quantidadeMinDesconto){
+            this.valorTotal = (quantidadeVendida * valorUnidade) * porcentagemPromocao;
+        }else{
+            this.valorTotal = valorUnidade * quantidadeVendida;
+        }
+    }
+    
+    public int getQuantidadeVendida() {
+        return quantidadeVendida;
+    }
+
+    public void setQuantidadeVendida(int quantidadeVendida) {
+        this.quantidadeVendida = quantidadeVendida;
+    }
 
     public String getNome() {
         return nome;

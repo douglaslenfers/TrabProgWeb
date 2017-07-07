@@ -52,6 +52,10 @@
             function showCadUsuario() {
                 $('#cadUsuario').modal('show');
             }
+            
+            function showEditUsuario() {
+                $('#editModal').modal('show');
+            }
 
             function excluirLin() {
                 if (confirm("Tem certeza que deseja excluir esse usuário?")) {
@@ -115,10 +119,10 @@
                                                         <td>${p.tipo}</td>
                                                         <td>${p.senha}</td>
                                                         <td class="text-center">
-                                                            <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" onclick="showCadUsuario(${login.id})">
+                                                            <a name="Editar" type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar" data->
                                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                            </button>
-                                                            <a href="ExcluirUsuario?action=delete&id=${p.id}" name = "Excluir" type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="excluirLin(${login.id})">
+                                                            </a>
+                                                            <a href="ExcluirUsuario?action=delete&id=${p.id}" name = "Excluir" type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir">
                                                                 <i class="fa fa-times"></i>
                                                             </a>
                                                         </td>
@@ -160,6 +164,62 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">Cadastrar Usuário</h4>
+                    </div>
+                    <form id="formAdmin" method="post" action="${pageContext.request.contextPath}/CadastrarUsuario" role = "form">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="nome">Nome:</label>
+                                    <input id="nome" name="nome" placeholder="Nome" type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="email">Email:</label>
+                                    <input id="email" name="email" placeholder="Email" type="text" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="senha">Senha:</label>
+                                    <input id="senha" name="senha" type="password" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="confSenha">Confirmar senha:</label>
+                                    <input id="confSenha" name="confSenha" type="password" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="perfil">Perfil:</label>
+                                    <select id="perfil" name="perfil" class="form-control select2" style="width: 250px;">
+                                        <option value=""></option>
+                                        <option value="admin">Admin</option>
+                                        <option value="gerente">Gerente</option>
+                                        <option value="caixa">Caixa</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+                        
+                        
+                        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Editar Usuário</h4>
                     </div>
                     <form id="formAdmin" method="post" action="${pageContext.request.contextPath}/CadastrarUsuario" role = "form">
                         <div class="modal-body">

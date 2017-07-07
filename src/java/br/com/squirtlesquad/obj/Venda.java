@@ -11,7 +11,16 @@ public class Venda {
     private int idVenda;
     private Date dataVenda;
     private double valor;
+    private int quantidade;
 
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+    
     public void addProduto(Produto p) {
         produto.add(p);
     }
