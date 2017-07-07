@@ -1,9 +1,7 @@
 package br.com.squirtlesquad.main;
 
-import br.com.squirtlesquad.DAOInterface.VendaDao;
 import br.com.squirtlesquad.DAOMysql.MysqlPessoaDao;
 import br.com.squirtlesquad.DAOMysql.MysqlProdutoDao;
-import br.com.squirtlesquad.DAOMysql.MysqlVendaDao;
 import br.com.squirtlesquad.obj.Pessoa;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,7 +38,7 @@ public class ValidarAcesso extends HttpServlet {
         if (p.getTipo().equals("caixa")) {
             destino = "caixa.jsp";
             MysqlProdutoDao produtoDao = new MysqlProdutoDao();
-             request.setAttribute("listaProduto", produtoDao.selectAllProduto());
+            request.setAttribute("listaProduto", produtoDao.selectAllProduto());
 
         } else if (p.getTipo().equals("gerente")) {
             MysqlProdutoDao produtoDao = new MysqlProdutoDao();
@@ -53,11 +51,6 @@ public class ValidarAcesso extends HttpServlet {
 
         }
 
-        
-
-        //O sistema é direcionado para a página 
-        //sucesso.jsp Se tudo ocorreu bem
-        //erro.jsp se houver algum problema.
         RequestDispatcher rd = request.getRequestDispatcher(destino);
         rd.forward(request, response);
     }

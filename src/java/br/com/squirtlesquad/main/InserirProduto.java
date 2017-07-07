@@ -22,7 +22,6 @@ public class InserirProduto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        
 
     }
 
@@ -47,24 +46,22 @@ public class InserirProduto extends HttpServlet {
             System.out.println("Erro ao converter data");
         }
         prod.setDataValidade(date);
-        if(request.getParameter("promocao").equalsIgnoreCase("N")){
+        if (request.getParameter("promocao").equalsIgnoreCase("N")) {
             prod.setPromocao(0);
-        }else{
+        } else {
             prod.setPromocao(1);
             prod.setPorcentagemPromocao(Double.parseDouble(request.getParameter("percent_promocao")));
         }
-        
-        
+
         prod.setQuantidadeMinDesconto(Integer.parseInt(request.getParameter("qtd_min_estoque")));
         prod.setCaminhoImagem(request.getParameter("image_produto"));
         prod.setValorUnidade(Double.parseDouble(request.getParameter("valor")));
         produtoDao.insertProduto(prod);
-        request.setAttribute("listaProdutos", 
+        request.setAttribute("listaProdutos",
                 produtoDao.selectAllProduto());
         String destino = "gerente.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(destino);
         rd.forward(request, response);
 
-       
     }
 }

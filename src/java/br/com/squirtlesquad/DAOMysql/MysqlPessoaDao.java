@@ -114,11 +114,11 @@ public class MysqlPessoaDao implements PessoaDao {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                    pessoa = new Pessoa();
-	            pessoa.setNome(rs.getString("nome"));
-	            pessoa.setId(rs.getString("id_user"));
-	            pessoa.setTipo(rs.getString("tipo_usuario"));
-	            pessoa.setSenha(rs.getString("senha"));
+                pessoa = new Pessoa();
+                pessoa.setNome(rs.getString("nome"));
+                pessoa.setId(rs.getString("id_user"));
+                pessoa.setTipo(rs.getString("tipo_usuario"));
+                pessoa.setSenha(rs.getString("senha"));
             }
             return pessoa;
         } catch (SQLException ex) {

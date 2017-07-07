@@ -1,7 +1,6 @@
 package br.com.squirtlesquad.main;
 
 import br.com.squirtlesquad.DAOMysql.MysqlPessoaDao;
-import br.com.squirtlesquad.obj.Pessoa;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,17 +20,14 @@ public class ExcluirUsuario extends HttpServlet {
 
         String action = request.getParameter("action");
         MysqlPessoaDao pessoaDao = new MysqlPessoaDao();
-        if (action.equalsIgnoreCase("delete")){
-         pessoaDao.removePessoa(request.getParameter("id"));
-         
-        }else if (action.equalsIgnoreCase("edit")){
-   
+        if (action.equalsIgnoreCase("delete")) {
+            pessoaDao.removePessoa(request.getParameter("id"));
+
+        } else if (action.equalsIgnoreCase("edit")) {
+
             request.setAttribute("editPessoa", pessoaDao.selectPessoa(request.getParameter("id")));
         }
-        
-        
-        
-        
+
         request.setAttribute("listaPessoa", pessoaDao.selectAllPessoa());
         String destino = "admin.jsp";
         RequestDispatcher rd = request.getRequestDispatcher(destino);
@@ -42,14 +38,5 @@ public class ExcluirUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-
-
-
-
-        //O sistema é direcionado para a página 
-        //sucesso.jsp Se tudo ocorreu bem
-        //erro.jsp se houver algum problema.
-        //RequestDispatcher rd = request.getRequestDispatcher(destino);
-       // rd.forward(request, response);
     }
 }

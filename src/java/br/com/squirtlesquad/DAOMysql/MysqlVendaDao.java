@@ -11,8 +11,6 @@ import br.com.squirtlesquad.DAOInterface.VendaDao;
 import br.com.squirtlesquad.obj.Pessoa;
 import br.com.squirtlesquad.obj.Produto;
 import br.com.squirtlesquad.obj.Venda;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MysqlVendaDao implements VendaDao {
 
@@ -24,11 +22,8 @@ public class MysqlVendaDao implements VendaDao {
         conn = MysqlDAOFactory.ConnectDb();
     }
 
-    
-    
-    
     @Override
-   public void insertVenda(Venda venda) {
+    public void insertVenda(Venda venda) {
         Connection conn = null;
         PreparedStatement ps = null;
         //MysqlProdutoDao produtoDao = new MysqlProdutoDao();
@@ -144,6 +139,7 @@ public class MysqlVendaDao implements VendaDao {
             }
         }
     }
+
     public int selectUltimaVenda(String id) {
         ResultSet rs = null;
         Connection conn = null;
@@ -177,6 +173,5 @@ public class MysqlVendaDao implements VendaDao {
             }
         }
     }
-    
 
 }

@@ -149,12 +149,6 @@
                                         <li role="presentation" class="active">
                                             <a href="#prod_produtos" role="tab" data-toggle="tab">Produtos</a>
                                         </li>
-                                        <li role="presentation">
-                                            <a id="prods_vencidos" href="#prod_vencidos" role="tab" data-toggle="tab">Vencidos</a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a id="estoque_prods" href="#prod_estoque" role="tab" data-toggle="tab">Estoque</a>
-                                        </li>
                                     </ul>
                                     <div role="tabpanel">
                                         <div class="tab-content">
@@ -219,7 +213,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -230,24 +223,12 @@
                                 <div class="col-md-12">
                                     <ul class="nav nav-tabs">
                                         <li role="presentation" class="active">
-                                            <a href="#grafico" role="tab" data-toggle="tab">Gráfico</a>
-                                        </li>
-                                        <li role="presentation">
                                             <a href="#power_bi" role="tab" data-toggle="tab">Dashboard</a>
                                         </li>
                                     </ul>
                                     <div role="tabpanel">
                                         <div class="tab-content">
-                                            <div role="tabpanel" class="tab-pane active" id="grafico">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div id="container2" style="min-width: 30px; height: 400px; margin: 0 auto"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane" id="power_bi">
+                                            <div role="tabpanel" class="tab-pane active" id="power_bi">
                                                 <div class="container">
                                                     <div class="row">
                                                         <div class="col-md-12">

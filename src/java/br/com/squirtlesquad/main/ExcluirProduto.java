@@ -19,8 +19,8 @@ public class ExcluirProduto extends HttpServlet {
             HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         MysqlProdutoDao produtoDao = new MysqlProdutoDao();
-        
-        if (action.equalsIgnoreCase("delete")){
+
+        if (action.equalsIgnoreCase("delete")) {
             produtoDao.removeProduto(request.getParameter("id"));
         }
         request.setAttribute("listaProdutos", produtoDao.selectAllProduto());

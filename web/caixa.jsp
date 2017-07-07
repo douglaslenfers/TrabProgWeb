@@ -182,10 +182,10 @@
                         </div>
                         <div class="col-md-6" align="right">
                             <div class="form-group">
-                                
-                                    <a href="AdicionarVenda?action=limpar" name = "Excluir" type="button" class="btn btn-danger" data-toggle="modal">Limpar</a>
-                                    <a href="AdicionarVenda?action=finalizar" tname = "Excluir" type="button" class="btn btn-primary" data-toggle="modal">Finalizar Compra</a>
-                                
+
+                                <a href="AdicionarVenda?action=limpar" name = "Excluir" type="button" class="btn btn-danger" data-toggle="modal">Limpar</a>
+                                <a href="AdicionarVenda?action=finalizar" tname = "Excluir" type="button" class="btn btn-primary" data-toggle="modal">Finalizar Compra</a>
+
                             </div>
                         </div>
                     </div>
